@@ -1,15 +1,12 @@
-require 'rubygems'
-require 'mongo'
-source 'http://gemcutter.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mongo_mapper'
-gem 'bson'
-gem 'bson_ext'
+gem "mongoid", "~> 2.3"
+gem "bson_ext", "~> 1.4"
 
 gem 'json'
 

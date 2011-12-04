@@ -1,5 +1,7 @@
 class Subscription
-  include MongoMapper::EmbeddedDocument
+ include Mongoid::Document
   
-  key :service, String
+  field :service, type: String
+  
+  embedded_in :user
 end

@@ -1,7 +1,9 @@
 class Scheme
-  include MongoMapper::EmbeddedDocument
+  include Mongoid::Document
   
-  key :name, String
-  key :amount, Float
-  key :currency, String
+  field :name,type: String
+  field :amount, type: Float
+  field :currency, type: String
+  
+  embedded_in :service
 end
