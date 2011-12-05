@@ -1,5 +1,6 @@
-require "#{Rails.root}/lib/frequency"
-include Frequency
+#example of using Mixin in rake task
+#require "#{Rails.root}/lib/frequency"
+#include Frequency
 
 namespace :subtrackr do
    desc "Send out daily email"
@@ -7,7 +8,6 @@ namespace :subtrackr do
      
      users = User.where(:subscriptions.exists => true, :email.exists => true)
     
-     
      users.each do |u|
        
        u.subscriptions.each do |s|
