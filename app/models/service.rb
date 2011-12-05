@@ -1,7 +1,7 @@
 class Service
   include Mongoid::Document
   
-  field :name, type: String
+  field :name
   
   embed_many :schemes
   
