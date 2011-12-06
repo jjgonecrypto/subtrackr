@@ -2,31 +2,22 @@ class Subscription
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :service, :type => String
-  field :frequency
+  before_create :set_next_bill
+  
+  FREQUENCY_UNITS = [ "day", "week", "month", "year" ]
+  
+  field :service,         :type => String
+  field :amount,          :type => Float
+  field :currency,        :type => String,  :default => "usd"
+  field :frequency_unit,  :type => String,  :default => "month"
+  field :frequency_amount,:type => Integer, :default => 1
+  field :next_bill,       :type => Date
   
   embedded_in :user
   
-  def monthly?
-    type.upcase == 'M'
-  end
-  
-  def daily?
-    type.upcase == 'D'
-  end
-
-  def weekly?
-    type.upcase == 'W'
-  end
-
-  private
-  def type
-    @type ||= frequency.scan(/[a-z]$/i).first
-  end
-
-  private
-  def units
-    @units ||= frequency.scan(/^[0-9]+/).first
+  protected 
+  def set_next_bill
+    next_bill = Time.new + frequency_amount.send(frequency_unit)
   end
 
 end
