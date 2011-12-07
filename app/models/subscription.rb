@@ -37,6 +37,6 @@ class Subscription
     day = billing_day_frequency - reminder_buffer
     # if the day is in a previous month
     day = 28 + day if day < 1
-    self.reminder = day
+    self.day_to_remind_on = day
   end
 end
