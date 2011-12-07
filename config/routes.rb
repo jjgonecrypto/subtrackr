@@ -1,12 +1,13 @@
 Subtrackr::Application.routes.draw do
   resources :services
 
-  match 'users' => 'users#index', :via => :get
-  match 'users/new' => 'users#new', :via => :get, :as => :new_user
-  match "users/:username" => 'users#show', :via => :get, :as => :user
+  match 'users' => 'users#index',               :via => :get
+  match 'users/new' => 'users#new',             :via => :get, :as => :new_user
+  match 'users' => 'users#create',              :via => :post
+  match "users/:username" => 'users#show',      :via => :get, :as => :user
   match 'users/:username/edit' => 'users#edit', :via => :get, :as => :edit_user
-  match 'users/:username' => 'users#update', :via => :put
-  match 'users/:username' => 'users#destroy', :via => :delete
+  match 'users/:username' => 'users#update',    :via => :put
+  match 'users/:username' => 'users#destroy',   :via => :delete
   
   #resources :subscriptions
   #resources :users

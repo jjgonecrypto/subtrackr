@@ -1,7 +1,63 @@
 class Subscription
- include Mongoid::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
   
-  field :service, :type => String
+  FREQUENCY_UNITS = [ "daily", "weekly", "monthly", "yearly" ]
   
-  embedded_in :user
+  field :service,         	:type => String
+  field :amount,          	:type => Float
+  field :currency,        	:type => String,  :default => "usd"
+  field :frequency,  	  	:type => String,  :default => "monthly"
+  field :offset,	  	:type => Integer, :default => 1
+  field :days_before_notify,	:type => Integer, :default => 2
+  field :started,	  	:type => Date,    :default => Date.today
+  field :next_bill,		:type => Date
+  field :notify_date,		:type => Date
+
+  belongs_to :user
+  
+  before_save :calculate_billing_and_notification_dates
+
+  def self.send_email
+      where(:frequency => "monthly", 
+	   :offset => ( Date.today + :notify_before).day).each do |subscription|
+	     #MemberMailer.subscription_notification(subscription.user, subscription).deliver
+	     puts subscription.service + ', ' + subscription.user.email
+	     subscription.save! #recalc the next bill
+	   end
+  end
+
+  private
+  def calculate_billing_and_notification_dates
+    self.next_bill = calc_monthly if self.frequency == "monthly"
+    self.next_bill = calc_weekly  if self.frequency == "weekly"
+    self.next_bill = calc_yearly  if self.frequency == "yearly"
+
+    self.notify_date = self.next_bill - self.days_before_notify
+  end 
+
+  def calc_monthly  
+    today = Date.today	  
+    if (Date::valid_date?(today.year, today.month, self.offset))
+        bill_this_month = Date.new(today.year, today.month, self.offset)
+    else
+        bill_this_month = Date.new(today.year, today.month, (today.month == 2) ? 28 : 30)
+    end
+    (Date.today + days_before_notify >= bill_this_month) ? bill_this_month.next_month : bill_this_month
+  end
+
+  def calc_weekly
+    today = Date.today
+
+    ((today + self.days_before_notify).wday >= self.offset) ? today + 7 - today.wday + self.offset : today + self.offset - today.wday 
+  end
+
+  def calc_yearly
+    today = Date.today
+
+    bill_this_year = Date.new(today.year) + self.offset - 1 
+    (today + self.days_before_notify >= bill_this_year) ? bill_this_year.next_year : bill_this_year
+  end
+
 end
+

@@ -4,9 +4,9 @@ class User
 
   field :username
   field :password
+  field :email
   
-    
-  embeds_many :subscriptions
+  has_many :subscriptions
   
   attr_protected :password
   

@@ -3,6 +3,6 @@ class Service
   
   field :name
   
-  embed_many :schemes
+  embeds_many :schemes
   
 end
