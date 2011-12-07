@@ -6,8 +6,7 @@ class User
   field :password
   field :email
   
-    
-  embeds_many :subscriptions
+  has_many :subscriptions
   
   attr_protected :password
   
