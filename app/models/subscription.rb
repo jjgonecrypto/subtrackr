@@ -4,7 +4,7 @@ class Subscription
 
   belongs_to :user
 
-  before_create :calculate_monthly_reminder_day, :if => :monthy?
+  before_save :calculate_monthly_reminder_day, :if => :monthy?
 
   field :service,            :type => String
   field :amount,             :type => Float
