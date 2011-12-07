@@ -15,6 +15,8 @@ class Subscription
   field :notify_date,		:type => Date
 
   belongs_to :user
+  
+  before_save :calculate_billing_and_notification_dates
 
   def self.send_email
       where(:frequency => "monthly", 
@@ -25,20 +27,19 @@ class Subscription
 	   end
   end
 
- # private
-  def calc
-    next_bill = calc_monthly if frequency == "monthly"
-    next_bill = calc_weekly  if frequency == "weekly"
-    next_bill = calc_yearly  if frequency == "yearly"
+  private
+  def calculate_billing_and_notification_dates
+    self.next_bill = calc_monthly if self.frequency == "monthly"
+    self.next_bill = calc_weekly  if self.frequency == "weekly"
+    self.next_bill = calc_yearly  if self.frequency == "yearly"
 
-    notify_date = next_bill - days_before_notify
+    self.notify_date = self.next_bill - self.days_before_notify
   end 
 
-  private
   def calc_monthly  
     today = Date.today	  
-    if (Date::valid_date?(today.year, today.month, offset))
-        bill_this_month = Date.new(today.year, today.month, offset)
+    if (Date::valid_date?(today.year, today.month, self.offset))
+        bill_this_month = Date.new(today.year, today.month, self.offset)
     else
         bill_this_month = Date.new(today.year, today.month, (today.month == 2) ? 28 : 30)
     end
@@ -48,14 +49,14 @@ class Subscription
   def calc_weekly
     today = Date.today
 
-    ((today + days_before_notify).wday >= offset) ? today + 7 - today.wday + offset : today + offset - today.wday 
+    ((today + self.days_before_notify).wday >= self.offset) ? today + 7 - today.wday + self.offset : today + self.offset - today.wday 
   end
 
   def calc_yearly
     today = Date.today
 
-    bill_this_year = Date.new(today.year) + offset - 1 
-    (today + days_before_notify >= bill_this_year) ? bill_this_year.next_year : bill_this_year
+    bill_this_year = Date.new(today.year) + self.offset - 1 
+    (today + self.days_before_notify >= bill_this_year) ? bill_this_year.next_year : bill_this_year
   end
 
 end
