@@ -21,6 +21,16 @@ end
 group :test, :development do
   gem 'mongoid-rspec'
   gem 'rspec-rails', '~>2.6'
+  gem 'ruby-debug'
+  #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem "rspec-rails-matchers"
+  gem "mongoid-rspec"
+  gem 'factory_girl_rails'
+  gem 'mocha'
+  gem "capybara"
+  gem "cucumber"
+  gem "cucumber-rails", "1.2.1"
+  gem "database_cleaner"
 end
 
 gem 'jquery-rails'
