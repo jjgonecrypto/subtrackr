@@ -75,6 +75,25 @@ describe Subscription do
     end
   end
 
+=begin JM: commented until weekly is implemented
+  context "future weekly date testing" do
+    subject { Factory(:subscription, offset: 4, frequency: "weekly") } 
+      
+    let(:offset) {subject.offset}
+    let(:notify) {subject.days_before_notify}
+       
+    it "ensures dates are correctly placed in the current week" do
+       year = 2011
+       month = 12
+       day = 9 #this date is a friday - offset of 5
+       Timecop.freeze(Date.new(year,month,day)) do 
+	  subject.next_bill.should == Date.today + 6 
+          subject.notify_date.should == subject.next_bill - notify; 
+       end
+    end
+  end
+=end
+
   #it "should throw errors if invalid frequency is set"
   #if frequency is invalid, should throw error
 end
