@@ -26,11 +26,26 @@ describe Subscription do
        (subject.next_bill - subject.notify_date).should == notify_days
     end
 
-
+        
+     
   end
 
-  
+  context "future date testing" do
+    #Timecop.travel(Date.new(2010,12,19)) 
+      #subject { Factory(:subscription)}
+      subject do  
+	 Timecop.travel(Date.new(2010,12,19)) 
+         sub = Factory(:subscription) 
+      end
+      
+      let!(:offset) {subject.offset}
+       
+      it "ensures dates are correctly placed in the future" do
+        subject.next_bill.should == Date.new(2011, 1, 15)  
+      end
+     
+    #Timecop.return
+  end 
   #it "should throw errors if invalid frequency is set"
   #if frequency is invalid, should throw error
-
 end
