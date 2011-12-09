@@ -25,27 +25,56 @@ describe Subscription do
     it "should ensure notify date is correct distance prior" do 
        (subject.next_bill - subject.notify_date).should == notify_days
     end
-
-        
-     
   end
 
-  context "future date testing" do
-    #Timecop.travel(Date.new(2010,12,19)) 
-      #subject { Factory(:subscription)}
-      subject do  
-	 Timecop.travel(Date.new(2010,12,19)) 
-         sub = Factory(:subscription) 
-      end
+  context "future monthly date testing" do
+    subject { Factory(:subscription, offset: 15) } 
       
-      let!(:offset) {subject.offset}
+    let(:offset) {subject.offset}
+    let(:notify) {subject.days_before_notify}
        
-      it "ensures dates are correctly placed in the future" do
-        subject.next_bill.should == Date.new(2011, 1, 15)  
-      end
-     
-    #Timecop.return
-  end 
+    it "ensures dates are correctly placed in the following month and year" do
+       Timecop.freeze(Date.new(2010,12,19)) do 
+	  subject.next_bill.should == Date.new(2011,1,offset) 
+          subject.notify_date.should == Date.new(2011,1,offset) - notify; 
+       end
+    end
+  end
+
+  context "future monthly date testing next month" do
+    subject { Factory(:subscription, offset: 26) } 
+      
+    let(:offset) {subject.offset}
+    let(:notify) {subject.days_before_notify}
+       
+    it "ensures dates are correctly placed in the current month" do
+       year = 2013
+       month = 3 
+       day = 5
+       Timecop.freeze(Date.new(year,month,day)) do 
+	  subject.next_bill.should == Date.new(year,month,offset) 
+          subject.notify_date.should == subject.next_bill - notify; 
+       end
+    end
+  end
+
+  context "future monthly date short months" do
+    subject { Factory(:subscription, offset: 31) } 
+      
+    let(:offset) {subject.offset}
+    let(:notify) {subject.days_before_notify}
+       
+    it "ensures dates are correctly placed in the current short month" do
+       year = 2012
+       month = 2
+       day = 22
+       Timecop.freeze(Date.new(year,month,day)) do 
+	  subject.next_bill.should == Date.new(year,month,28) 
+          subject.notify_date.should == subject.next_bill - notify; 
+       end
+    end
+  end
+
   #it "should throw errors if invalid frequency is set"
   #if frequency is invalid, should throw error
 end
