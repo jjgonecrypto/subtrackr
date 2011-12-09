@@ -21,8 +21,8 @@ end
 group :test, :development do
   gem 'mongoid-rspec'
   gem 'rspec-rails', '~>2.6'
-  gem 'ruby-debug'
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  #gem 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem "rspec-rails-matchers"
   gem "mongoid-rspec"
   gem 'factory_girl_rails'

@@ -4,5 +4,4 @@ log/*.log
 tmp/
 .sass-cache/
 .sw[nomp]
-*~
-.DS_Store
+.DS_Store 
