@@ -25,8 +25,8 @@ class Subscription
         users[subscription.user].push(subscription)    
      end
 
-     users.each do |user|
-        UserMailer.subscription_notifications(user, users[user]).deliver
+     users.each do |user, subs|
+        UserMailer.subscription_notifications(user, subs).deliver
      end
   end
 
