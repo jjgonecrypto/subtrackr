@@ -18,13 +18,16 @@ class Subscription
   
   before_save :calculate_billing_and_notification_dates
 
-  def self.send_email
-      where(:frequency => "monthly", 
-	   :offset => ( Date.today + :notify_before).day).each do |subscription|
-	     #MemberMailer.subscription_notification(subscription.user, subscription).deliver
-	     puts subscription.service + ', ' + subscription.user.email
-	     subscription.save! #recalc the next bill
-	   end
+  def self.check_and_send_notifications
+     users = Hash.new
+     where(:frequency => "monthly", :notify_date => Date.today).each do |subscription| 
+        users[subscription.user] ||= [] 
+        users[subscription.user].push(subscription)    
+     end
+
+     users.each do |user|
+        UserMailer.subscription_notifications(user, users[user]).deliver
+     end
   end
 
   private
