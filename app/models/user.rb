@@ -6,7 +6,7 @@ class User
   field :password
   field :email
   
-  has_many :subscriptions
+  has_many :subscriptions, :dependent => :delete
   
   attr_protected :password
   

@@ -30,8 +30,8 @@ class Subscription
   private
   def calculate_billing_and_notification_dates
     self.next_bill = calc_monthly if self.frequency == "monthly"
-    self.next_bill = calc_weekly  if self.frequency == "weekly"
-    self.next_bill = calc_yearly  if self.frequency == "yearly"
+    #JM: TODO self.next_bill = calc_weekly  if self.frequency == "weekly"
+    #JM: TODO self.next_bill = calc_yearly  if self.frequency == "yearly"
 
     self.notify_date = self.next_bill - self.days_before_notify
   end 
@@ -46,10 +46,14 @@ class Subscription
     (Date.today + days_before_notify >= bill_this_month) ? bill_this_month.next_month : bill_this_month
   end
 
+=begin
   def calc_weekly
+    #JM: this is buggy because SUN = 0. If the offset is 0 it breaks the algorithm	  
     today = Date.today
 
-    ((today + self.days_before_notify).wday >= self.offset) ? today + 7 - today.wday + self.offset : today + self.offset - today.wday 
+    ((today + self.days_before_notify).wday >= self.offset || (today.self.days_before_notify).wday == 0)) 
+    ? today + 7 - today.wday + self.offset 
+    : today + self.offset - today.wday 
   end
 
   def calc_yearly
@@ -58,6 +62,7 @@ class Subscription
     bill_this_year = Date.new(today.year) + self.offset - 1 
     (today + self.days_before_notify >= bill_this_year) ? bill_this_year.next_year : bill_this_year
   end
+=end
 
 end
 
