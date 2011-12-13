@@ -90,20 +90,25 @@ describe Subscription do
   context "ensure subscription mailer" do
     before (:each) do
        @bill = Date.today
-       @user = User.create(username: 'test', email: 'justinjmoses@gmail.com');
-       @user.subscriptions.create!(offset: @bill.day, service: 'test', amount: 4.44)
-       @user.subscriptions.create!(offset: @bill.day, service: 'another', amount: 10) 
+       @u1 = User.create(username: 'test', email: 'u1@gmail.xxxx')
+       @u1.subscriptions.create!(offset: @bill.day, service: 'test', amount: 4.44)
+       @u1.subscriptions.create!(offset: @bill.day, service: 'another', amount: 10) 
+       @u2 = User.create(username: 't', email: 'u2@gmail.xxx')
+       @sub = @u2.subscriptions.create!(offset: @bill.day, service: 'whatever', amount: 19.32)
+       @u2.subscriptions.create!(offset: (Date.today - 4).day, service: 'thing', amount: 2) 
        @mailer = mock()
     end
     it "correctly calls mailer when subscriptions are due" do
        Timecop.freeze((@bill.next_month) - 2) do 
-          UserMailer.expects(:subscription_notifications).with(@user, @user.subscriptions).once.returns(@mailer)
-          @mailer.expects(:deliver).once
+          UserMailer.expects(:subscription_notifications).with(@u1, @u1.subscriptions.to_a).once.returns(@mailer)
+	  UserMailer.expects(:subscription_notifications).with(@u2, [@sub]).once.returns(@mailer)
+          @mailer.expects(:deliver).twice
 	  Subscription.check_and_send_notifications
        end
     end 	    
     after (:each) do
-       @user.delete
+       @u1.delete
+       @u2.delete
     end
   end
 end
