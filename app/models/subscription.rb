@@ -14,7 +14,7 @@ class Subscription
   field :next_bill,		:type => Date
   field :notify_date,		:type => Date
 
-  belongs_to :user
+  belongs_to :user, :inverse_of => :subscriptions
   
   before_save :calculate_billing_and_notification_dates
 

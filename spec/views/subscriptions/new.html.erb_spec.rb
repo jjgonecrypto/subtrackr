@@ -8,7 +8,7 @@ describe "subscriptions/new.html.erb" do
       :currency => "",
       :frequency => "",
       :offset => "",
-      :days_before_notifiy => "",
+      :days_before_notify => "",
       :started => ""
     ).as_new_record)
   end
@@ -23,7 +23,7 @@ describe "subscriptions/new.html.erb" do
       assert_select "input#subscription_currency", :name => "subscription[currency]"
       assert_select "input#subscription_frequency", :name => "subscription[frequency]"
       assert_select "input#subscription_offset", :name => "subscription[offset]"
-      assert_select "input#subscription_days_before_notifiy", :name => "subscription[days_before_notifiy]"
+      assert_select "input#subscription_days_before_notify", :name => "subscription[days_before_notify]"
       assert_select "input#subscription_started", :name => "subscription[started]"
     end
   end

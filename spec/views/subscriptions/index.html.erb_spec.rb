@@ -9,7 +9,7 @@ describe "subscriptions/index.html.erb" do
         :currency => "",
         :frequency => "",
         :offset => "",
-        :days_before_notifiy => "",
+        :days_before_notify => "",
         :started => ""
       ),
       stub_model(Subscription,
@@ -18,7 +18,7 @@ describe "subscriptions/index.html.erb" do
         :currency => "",
         :frequency => "",
         :offset => "",
-        :days_before_notifiy => "",
+        :days_before_notify => "",
         :started => ""
       )
     ])

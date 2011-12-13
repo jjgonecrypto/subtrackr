@@ -1,7 +1,5 @@
 Subtrackr::Application.routes.draw do
-  resources :subscriptions
 
-  resources :services
 =begin
   match 'users' => 'users#index',               :via => :get
   match 'users/new' => 'users#new',             :via => :get, :as => :new_user
@@ -13,13 +11,16 @@ Subtrackr::Application.routes.draw do
 =end
   #resources :subscriptions
   
+  root :to => 'users#index'
+  
   resources :users do
-    resources :subscriptions 
+    resources :subscriptions
   end
   
-  resources :services do 
-    resources :schemes 
+  resources :services do
+    resources :schemes
   end
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
