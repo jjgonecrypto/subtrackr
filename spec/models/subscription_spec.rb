@@ -13,6 +13,11 @@ describe Subscription do
     it { should belong_to(:user).of_type(User) }
   end
 
+  after (:each) do
+     User.delete_all
+     Subscription.delete_all
+  end
+  
   context "billing and notify dates" do
     subject { Factory(:subscription) } 
     let!(:notify_days) {subject.days_before_notify}
@@ -24,9 +29,6 @@ describe Subscription do
     
     it "should ensure notify date is correct distance prior" do 
        (subject.next_bill - subject.notify_date).should == notify_days
-    end
-    after (:each) do
-       subject.delete
     end
   end
 
@@ -41,9 +43,6 @@ describe Subscription do
 	  subject.next_bill.should == Date.new(2011,1,offset) 
           subject.notify_date.should == Date.new(2011,1,offset) - notify; 
        end
-    end
-    after (:each) do
-       subject.delete
     end
   end
 
@@ -62,9 +61,6 @@ describe Subscription do
           subject.notify_date.should == subject.next_bill - notify; 
        end
     end
-    after (:each) do
-       subject.delete
-    end
   end
 
   context "future monthly date short months" do
@@ -81,9 +77,6 @@ describe Subscription do
 	  subject.next_bill.should == Date.new(year,month,28) 
           subject.notify_date.should == subject.next_bill - notify; 
        end
-    end
-    after (:each) do
-       subject.delete
     end
   end
 
@@ -105,10 +98,6 @@ describe Subscription do
           @mailer.expects(:deliver).twice
 	  Subscription.check_and_send_notifications
        end
-    end 	    
-    after (:each) do
-       @u1.delete
-       @u2.delete
-    end
+    end 
   end
 end
