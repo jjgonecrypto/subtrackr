@@ -93,12 +93,12 @@ describe Subscription do
        @user = User.create(username: 'test', email: 'justinjmoses@gmail.com');
        @user.subscriptions.create!(offset: @bill.day, service: 'test', amount: 4.44)
        @user.subscriptions.create!(offset: @bill.day, service: 'another', amount: 10) 
-       @mailer = double(Mail::Message)
+       @mailer = mock()
     end
     it "correctly calls mailer when subscriptions are due" do
        Timecop.freeze((@bill.next_month) - 2) do 
-          UserMailer.should_receive(:subscription_notifications).once.and_return(@mailer)
-          @mailer.should_receive(:deliver)
+          UserMailer.expects(:subscription_notifications).with(@user, @user.subscriptions).once.returns(@mailer)
+          @mailer.expects(:deliver).once
 	  Subscription.check_and_send_notifications
        end
     end 	    
