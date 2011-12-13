@@ -8,9 +8,3 @@ user.subscriptions.create(:service => 'Netflix', :started => Date.new(2011,1), :
 user.subscriptions.create(:service => 'Media Temple Server', :started => Date.new(2011,10,6), :amount => 30, :offset => 6)
 user.subscriptions.create(:service => 'Github Micro', :started => Date.new(2011,12,4), :amount => 7, :offset => 4)
 user.subscriptions.create(:service => 'Code School', :started => Date.new(2011,11,17), :amount => 25, :offset => 17)
-
-
-dummy = User.create(username: "dummy", email: "justinjmoses@gmail.com")
-
-dummy.subscriptions.create(service: "test 1223", amount: 10, offset: Date.today.day + 3)
-dummy.subscriptions.create(service: "alteria", amount: 2.99, offset: Date.today.day + 2)

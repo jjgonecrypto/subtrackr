@@ -1,1 +1,13 @@
-text based email.
+subtrackr reminders
+====================
+
+dear <%= @user.username %>,
+
+the following subscriptions are due to renew shortly.
+ 
+<% @subscriptions.each do |s| %>
+	<%= s.service %>		<%= number_to_currency(s.amount) %>USD		<%= distance_of_time_in_words(s.next_bill, Date.today) %>
+<% end %>
+
+thanks,
+subtrackr 

@@ -27,7 +27,9 @@ class Subscription
 
      users.each do |user, subs|
         UserMailer.subscription_notifications(user, subs).deliver
+        subs.each { |s| s.save } #update billing dates
      end
+    
   end
 
   private
