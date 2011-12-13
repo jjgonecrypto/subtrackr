@@ -25,6 +25,9 @@ describe Subscription do
     it "should ensure notify date is correct distance prior" do 
        (subject.next_bill - subject.notify_date).should == notify_days
     end
+    after (:each) do
+       subject.delete
+    end
   end
 
   context "future monthly date testing" do
@@ -38,6 +41,9 @@ describe Subscription do
 	  subject.next_bill.should == Date.new(2011,1,offset) 
           subject.notify_date.should == Date.new(2011,1,offset) - notify; 
        end
+    end
+    after (:each) do
+       subject.delete
     end
   end
 
@@ -56,6 +62,9 @@ describe Subscription do
           subject.notify_date.should == subject.next_bill - notify; 
        end
     end
+    after (:each) do
+       subject.delete
+    end
   end
 
   context "future monthly date short months" do
@@ -73,44 +82,28 @@ describe Subscription do
           subject.notify_date.should == subject.next_bill - notify; 
        end
     end
+    after (:each) do
+       subject.delete
+    end
   end
 
   context "ensure subscription mailer" do
     before (:each) do
-       @bill = Date.new(Date.today.year, Date.today.month, 1)
+       @bill = Date.today
        @user = User.create(username: 'test', email: 'justinjmoses@gmail.com');
        @user.subscriptions.create!(offset: @bill.day, service: 'test', amount: 4.44)
        @user.subscriptions.create!(offset: @bill.day, service: 'another', amount: 10) 
+       @mailer = double(Mail::Message)
     end
     it "correctly calls mailer when subscriptions are due" do
        Timecop.freeze((@bill.next_month) - 2) do 
-          Subscription.check_and_send_notifications
-          UserMailer.should_receive(:subscription_notification)
+          UserMailer.should_receive(:subscription_notifications).once.and_return(@mailer)
+          @mailer.should_receive(:deliver)
+	  Subscription.check_and_send_notifications
        end
     end 	    
     after (:each) do
-       #@user.delete
+       @user.delete
     end
   end
-=begin JM: commented until weekly is implemented
-  context "future weekly date testing" do
-    subject { Factory(:subscription, offset: 4, frequency: "weekly") } 
-      
-    let(:offset) {subject.offset}
-    let(:notify) {subject.days_before_notify}
-       
-    it "ensures dates are correctly placed in the current week" do
-       year = 2011
-       month = 12
-       day = 9 #this date is a friday - offset of 5
-       Timecop.freeze(Date.new(year,month,day)) do 
-	  subject.next_bill.should == Date.today + 6 
-          subject.notify_date.should == subject.next_bill - notify; 
-       end
-    end
-  end
-=end
-
-  #it "should throw errors if invalid frequency is set"
-  #if frequency is invalid, should throw error
 end
