@@ -75,6 +75,23 @@ describe Subscription do
     end
   end
 
+  context "ensure subscription mailer" do
+    before (:each) do
+       @bill = Date.new(Date.today.year, Date.today.month, 1)
+       @user = User.create(username: 'test', email: 'justinjmoses@gmail.com');
+       @user.subscriptions.create!(offset: @bill.day, service: 'test', amount: 4.44)
+       @user.subscriptions.create!(offset: @bill.day, service: 'another', amount: 10) 
+    end
+    it "correctly calls mailer when subscriptions are due" do
+       Timecop.freeze((@bill.next_month) - 2) do 
+          Subscription.check_and_send_notifications
+          UserMailer.should_receive(:subscription_notification)
+       end
+    end 	    
+    after (:each) do
+       #@user.delete
+    end
+  end
 =begin JM: commented until weekly is implemented
   context "future weekly date testing" do
     subject { Factory(:subscription, offset: 4, frequency: "weekly") } 
