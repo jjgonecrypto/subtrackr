@@ -1,6 +1,8 @@
 Subtrackr::Application.routes.draw do
-  resources :services
+  resources :subscriptions
 
+  resources :services
+=begin
   match 'users' => 'users#index',               :via => :get
   match 'users/new' => 'users#new',             :via => :get, :as => :new_user
   match 'users' => 'users#create',              :via => :post
@@ -8,10 +10,16 @@ Subtrackr::Application.routes.draw do
   match 'users/:username/edit' => 'users#edit', :via => :get, :as => :edit_user
   match 'users/:username' => 'users#update',    :via => :put
   match 'users/:username' => 'users#destroy',   :via => :delete
-  
+=end
   #resources :subscriptions
-  #resources :users
   
+  resources :users do
+    resources :subscriptions 
+  end
+  
+  resources :services do 
+    resources :schemes 
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

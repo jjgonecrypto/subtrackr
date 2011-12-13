@@ -6,7 +6,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @services }
+      format.json { render json: @services }
     end
   end
 
@@ -17,7 +17,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @service }
+      format.json { render json: @service }
     end
   end
 
@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @service }
+      format.json { render json: @service }
     end
   end
 
@@ -44,11 +44,11 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @service, :notice => 'Service was successfully created.' }
-        format.json { render :json => @service, :status => :created, :location => @service }
+        format.html { redirect_to @service, notice: 'Service was successfully created.' }
+        format.json { render json: @service, status: :created, location: @service }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @service.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.update_attributes(params[:service])
-        format.html { redirect_to @service, :notice => 'Service was successfully updated.' }
+        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @service.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end
   end

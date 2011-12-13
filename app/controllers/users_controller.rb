@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :load_user, :only => [:show, :edit, :update, :destroy]
   
   def load_user
-    @user = User.where(:username => params[:username]).first
+    @user = User.find(params[:id])
   end
   
   def index
