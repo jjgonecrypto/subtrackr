@@ -1,8 +1,13 @@
 class SubscriptionsController < ApplicationController
-  # GET /subscriptions
-  # GET /subscriptions.json
+  
+  before_filter :load_user, :only => [:index, :new, :show, :edit]
+  
+  def load_user
+    @user = User.find(params[:user_id])
+  end
+  
   def index
-    @subscriptions = Subscription.where(user_id: params[:user_id])
+    @subscriptions = @user.subscriptions
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +29,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   # GET /subscriptions/new.json
   def new
-    @subscription = Subscription.new
+    @subscription = @user.subscriptions.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +45,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @subscription = Subscription.new(params[:subscription])
+    @subscription = @user.subscriptions.new(params[:subscription])
 
     respond_to do |format|
       if @subscription.save

@@ -23,13 +23,13 @@
     <td><%= subscription.offset %></td>
     <td><%= subscription.days_before_notify %></td>
     <td><%= subscription.started %></td>
-    <td><%= link_to 'Show', subscription %></td>
-    <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-    <td><%= link_to 'Destroy', subscription, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', user_subscription_path(@user, subscription) %></td>
+    <td><%= link_to 'Edit', edit_user_subscription_path(@user, subscription) %></td>
+    <td><%= link_to 'Destroy', user_subscription_path(@user, subscription), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Subscription', new_subscription_path %>
+<%= link_to 'New Subscription', new_user_subscription_path(@user) %>
