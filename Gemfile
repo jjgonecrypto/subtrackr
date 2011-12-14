@@ -31,6 +31,7 @@ group :test, :development do
   gem "cucumber"
   gem "cucumber-rails", "1.2.1"
   gem "database_cleaner"
+  gem "jasmine"
 end
 
 gem 'jquery-rails'
