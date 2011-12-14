@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   
-  before_filter :load_user, :only => [:index, :new, :show, :edit]
+  before_filter :load_user, :only => [:index, :new, :show, :edit, :update, :create]
   
   def load_user
     @user = User.find(params[:user_id])
@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @subscription = Subscription.find(params[:id])
+    @subscription = @user.subscriptions.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,7 +39,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1/edit
   def edit
-    @subscription = Subscription.find(params[:id])
+    @subscription = @user.subscriptions.find(params[:id])
   end
 
   # POST /subscriptions
@@ -49,7 +49,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        format.html { redirect_to user_subscription_path(@user, @subscription), notice: 'Subscription was successfully created.' }
         format.json { render json: @subscription, status: :created, location: @subscription }
       else
         format.html { render action: "new" }
@@ -65,10 +65,10 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.update_attributes(params[:subscription])
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to user_subscription_path, notice: 'Subscription was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to user_subscription_path }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
@@ -81,7 +81,7 @@ class SubscriptionsController < ApplicationController
     @subscription.destroy
 
     respond_to do |format|
-      format.html { redirect_to subscriptions_url }
+      format.html { redirect_to user_subscriptions_url }
       format.json { head :ok }
     end
   end
