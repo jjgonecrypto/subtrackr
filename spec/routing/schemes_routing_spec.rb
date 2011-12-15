@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe SchemesController do
   describe "routing" do
-
+  pending "check once scheme embedding is complete."
+=begin Commented as these will likely be removed (embedded docs)...
     it "routes to #index" do
       get("/schemes").should route_to("schemes#index")
     end
@@ -30,6 +31,6 @@ describe SchemesController do
     it "routes to #destroy" do
       delete("/schemes/1").should route_to("schemes#destroy", :id => "1")
     end
-
+=end
   end
 end

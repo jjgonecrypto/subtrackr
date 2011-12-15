@@ -19,13 +19,6 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SubscriptionsController do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Subscription. As you add validations to Subscription, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
   
   let (:user) { Factory(:user) }
   
