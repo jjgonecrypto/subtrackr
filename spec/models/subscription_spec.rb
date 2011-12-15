@@ -82,8 +82,8 @@ describe Subscription do
 
   context "ensure subscription mailer" do
     let(:bill) { Date.today }
-    let(:user1) { Factory(:user) }
-    let(:user2) { Factory(:user) }
+    let!(:user1) { Factory(:user) }
+    let!(:user2) { Factory(:user) }
     let!(:sub1) { Factory(:subscription, user: user1, service: 'test1', amount: 4.44, offset: bill.day) }
     let!(:sub2) { Factory(:subscription, user: user1, service: 'test2', amount: 5, offset: bill.day) }
     let!(:sub3) { Factory(:subscription, user: user2, service: 'test3', amount: 12, offset: bill.day) }
@@ -98,7 +98,7 @@ describe Subscription do
     end
 
     it "correctly calls mailer when subscriptions are due" do
-       Timecop.freeze((bill.next_month) - 2) do 
+       Timecop.freeze((bill.next_month) - 3) do 
           Subscription.check_and_send_notifications
        end
     end 
