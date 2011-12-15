@@ -81,14 +81,14 @@ describe ServicesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved service as @service" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Service.any_instance.stub(:save).and_return(false)
+        Service.any_instance.stubs(:save).returns(false)
         post :create, :service => {}
         assigns(:service).should be_a_new(Service)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Service.any_instance.stub(:save).and_return(false)
+        Service.any_instance.stubs(:save).returns(false)
         post :create, :service => {}
         response.should render_template("new")
       end
@@ -103,7 +103,7 @@ describe ServicesController do
         # specifies that the Service created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Service.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        Service.any_instance.expects(:update_attributes).with({'these' => 'params'})
         put :update, :id => service.id, :service => {'these' => 'params'}
       end
 
@@ -124,7 +124,7 @@ describe ServicesController do
       it "assigns the service as @service" do
         service = Service.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Service.any_instance.stub(:save).and_return(false)
+        Service.any_instance.stubs(:save).returns(false)
         put :update, :id => service.id, :service => {}
         assigns(:service).should eq(service)
       end
@@ -132,7 +132,7 @@ describe ServicesController do
       it "re-renders the 'edit' template" do
         service = Service.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Service.any_instance.stub(:save).and_return(false)
+        Service.any_instance.stubs(:save).returns(false)
         put :update, :id => service.id, :service => {}
         response.should render_template("edit")
       end

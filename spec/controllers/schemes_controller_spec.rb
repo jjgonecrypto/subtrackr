@@ -81,14 +81,14 @@ describe SchemesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved scheme as @scheme" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Scheme.any_instance.stub(:save).and_return(false)
+        Scheme.any_instance.stubs(:save).returns(false)
         post :create, :scheme => {}
         assigns(:scheme).should be_a_new(Scheme)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Scheme.any_instance.stub(:save).and_return(false)
+        Scheme.any_instance.stubs(:save).returns(false)
         post :create, :scheme => {}
         response.should render_template("new")
       end
@@ -103,7 +103,7 @@ describe SchemesController do
         # specifies that the Scheme created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Scheme.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        Scheme.any_instance.expects(:update_attributes).with({'these' => 'params'})
         put :update, :id => scheme.id, :scheme => {'these' => 'params'}
       end
 
@@ -124,7 +124,7 @@ describe SchemesController do
       it "assigns the scheme as @scheme" do
         scheme = Scheme.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Scheme.any_instance.stub(:save).and_return(false)
+        Scheme.any_instance.stubs(:save).returns(false)
         put :update, :id => scheme.id, :scheme => {}
         assigns(:scheme).should eq(scheme)
       end
@@ -132,7 +132,7 @@ describe SchemesController do
       it "re-renders the 'edit' template" do
         scheme = Scheme.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Scheme.any_instance.stub(:save).and_return(false)
+        Scheme.any_instance.stubs(:save).returns(false)
         put :update, :id => scheme.id, :scheme => {}
         response.should render_template("edit")
       end

@@ -81,14 +81,14 @@ describe SubscriptionsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved subscription as @subscription" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Subscription.any_instance.stub(:save).and_return(false)
+        Subscription.any_instance.stubs(:save).returns(false)
         post :create, :subscription => {}
         assigns(:subscription).should be_a_new(Subscription)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Subscription.any_instance.stub(:save).and_return(false)
+        Subscription.any_instance.stubs(:save).returns(false)
         post :create, :subscription => {}
         response.should render_template("new")
       end
@@ -103,7 +103,7 @@ describe SubscriptionsController do
         # specifies that the Subscription created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Subscription.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        Subscription.any_instance.expects(:update_attributes).with({'these' => 'params'})
         put :update, :id => subscription.id, :subscription => {'these' => 'params'}
       end
 
@@ -124,7 +124,7 @@ describe SubscriptionsController do
       it "assigns the subscription as @subscription" do
         subscription = Subscription.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Subscription.any_instance.stub(:save).and_return(false)
+        Subscription.any_instance.stubs(:save).returns(false)
         put :update, :id => subscription.id, :subscription => {}
         assigns(:subscription).should eq(subscription)
       end
@@ -132,7 +132,7 @@ describe SubscriptionsController do
       it "re-renders the 'edit' template" do
         subscription = Subscription.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Subscription.any_instance.stub(:save).and_return(false)
+        Subscription.any_instance.stubs(:save).returns(false)
         put :update, :id => subscription.id, :subscription => {}
         response.should render_template("edit")
       end
