@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'database_cleaner'
 require 'mocha'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -32,6 +33,16 @@ RSpec.configure do |config|
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
+ # Clean up the database
   
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.orm = "mongoid"
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.clean
+  end
+
 end
 

@@ -13,11 +13,6 @@ describe Subscription do
     it { should belong_to(:user).of_type(User) }
   end
 
-  after (:each) do
-     User.delete_all
-     Subscription.delete_all
-  end
-  
   context "billing and notify dates" do
     subject { Factory(:subscription) } 
     let!(:notify_days) {subject.days_before_notify}
