@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "subscriptions/edit.html.erb" do
   before(:each) do
+    @user = assign(:user, stub_model(User))
     @subscription = assign(:subscription, stub_model(Subscription,
       :service => "",
       :amount => "",
@@ -9,15 +10,16 @@ describe "subscriptions/edit.html.erb" do
       :frequency => "",
       :offset => "",
       :days_before_notify => "",
-      :started => ""
+      :started => "", 
+      :user => @user
     ))
   end
 
-  it "renders the edit subscription form" do
+  it "renders the edit subscription form" do 
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form", :action => subscriptions_path(@subscription), :method => "post" do
+    assert_select "form", :action => user_subscription_path(@user, @subscription), :method => "post" do
       assert_select "input#subscription_service", :name => "subscription[service]"
       assert_select "input#subscription_amount", :name => "subscription[amount]"
       assert_select "input#subscription_currency", :name => "subscription[currency]"

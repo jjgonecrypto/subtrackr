@@ -149,6 +149,9 @@ GEM
       railties (~> 3.0)
       rspec (~> 2.7.0)
     rspec-rails-matchers (0.2.1)
+    rspec-rails-mocha (0.3.1)
+      mocha (>= 0.9.8)
+      rspec-rails (>= 2.0.0)
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -209,6 +212,7 @@ DEPENDENCIES
   rails (= 3.1.1)
   rspec-rails (~> 2.6)
   rspec-rails-matchers
+  rspec-rails-mocha (~> 0.3.1)
   ruby-debug19
   sass-rails (~> 3.1.4)
   timecop

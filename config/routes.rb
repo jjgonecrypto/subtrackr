@@ -1,5 +1,7 @@
 Subtrackr::Application.routes.draw do
 
+  resources :schemes
+
 =begin
   match 'users' => 'users#index',               :via => :get
   match 'users/new' => 'users#new',             :via => :get, :as => :new_user

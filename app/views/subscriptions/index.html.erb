@@ -7,7 +7,7 @@
     <th>Currency</th>
     <th>Frequency</th>
     <th>Offset</th>
-    <th>Days before notifiy</th>
+    <th>Days before notify</th>
     <th>Started</th>
     <th></th>
     <th></th>
@@ -17,7 +17,7 @@
 <% @subscriptions.each do |subscription| %>
   <tr>
     <td><%= subscription.service %></td>
-    <td><%= subscription.amount %></td>
+    <td><%= number_to_currency(subscription.amount) %></td>
     <td><%= subscription.currency %></td>
     <td><%= subscription.frequency %></td>
     <td><%= subscription.offset %></td>
@@ -32,4 +32,5 @@
 
 <br />
 
-<%= link_to 'New Subscription', new_user_subscription_path(@user) %>
+<%= link_to 'New Subscription', new_user_subscription_path(@user) %> | 
+<%= link_to 'Back', @user %>
