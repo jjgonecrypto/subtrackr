@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  	 <style type="text/css">
+      font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    </style>
+  </head>
+  <body>
+	<h1>Subtrackr reminders</h1>
+	
+	<p>Dear <%= @user.username %>, </p>
+	
+	<p>The following services are set to expire: </p>
+	
+	<table>
+		<% @subscriptions.each do |s| %>
+			<tr>
+				<td><%= s.service %></td>
+				<td><%= number_to_currency(s.amount) %>USD</td>
+				<td><%= distance_of_time_in_words(s.next_bill, Date.today) %></td>
+			</tr>
+		<% end %>
+	</table>
+  </body>
+</html>
