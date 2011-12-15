@@ -18,7 +18,6 @@ describe "subscriptions/edit.html.erb" do
   it "renders the edit subscription form" do 
     render
 
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => user_subscription_path(@user, @subscription), :method => "post" do
       assert_select "input#subscription_service", :name => "subscription[service]"
       assert_select "input#subscription_amount", :name => "subscription[amount]"

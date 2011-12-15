@@ -13,7 +13,6 @@ describe "services/edit.html.erb" do
   it "renders the edit service form" do
     render
 
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => services_path(@service), :method => "post" do
       assert_select "input#service_name", :name => "service[name]"
       assert_select "input#service_url", :name => "service[url]"

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "subscriptions/show.html.erb" do
   before(:each) do
+    @user = assign(:user, stub_model(User))
     @subscription = assign(:subscription, stub_model(Subscription,
       :service => "",
       :amount => "",
@@ -9,25 +10,19 @@ describe "subscriptions/show.html.erb" do
       :frequency => "",
       :offset => "",
       :days_before_notify => "",
-      :started => ""
+      :started => "",
+      :user => @user
     ))
   end
 
   it "renders attributes in <p>" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(//)
   end
 end
