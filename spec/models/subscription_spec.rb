@@ -75,25 +75,27 @@ describe Subscription do
     end
   end
 
-=begin JM: commented until weekly is implemented
-  context "future weekly date testing" do
-    subject { Factory(:subscription, offset: 4, frequency: "weekly") } 
-      
-    let(:offset) {subject.offset}
-    let(:notify) {subject.days_before_notify}
-       
-    it "ensures dates are correctly placed in the current week" do
-       year = 2011
-       month = 12
-       day = 9 #this date is a friday - offset of 5
-       Timecop.freeze(Date.new(year,month,day)) do 
-	  subject.next_bill.should == Date.today + 6 
-          subject.notify_date.should == subject.next_bill - notify; 
-       end
-    end
-  end
-=end
+  context "ensure subscription mailer" do
+    let(:bill) { Date.today }
+    let!(:user1) { Factory(:user) }
+    let!(:user2) { Factory(:user) }
+    let!(:sub1) { Factory(:subscription, user: user1, service: 'test1', amount: 4.44, offset: bill.day) }
+    let!(:sub2) { Factory(:subscription, user: user1, service: 'test2', amount: 5, offset: bill.day) }
+    let!(:sub3) { Factory(:subscription, user: user2, service: 'test3', amount: 12, offset: bill.day) }
+    let!(:sub4) { Factory(:subscription, user: user2, service: 'test4', amount: 0, offset: (Date.today - 4).day) }
+    let (:mailer) { mock }
 
-  #it "should throw errors if invalid frequency is set"
-  #if frequency is invalid, should throw error
+    before do
+       UserMailer.stubs(:subscription_notifications => mailer)
+       UserMailer.expects(:subscription_notifications).with(user1, user1.subscriptions.to_a).once.returns(mailer)
+       UserMailer.expects(:subscription_notifications).with(user2, [sub3]).once.returns(mailer)
+       mailer.expects(:deliver).twice
+    end
+
+    it "correctly calls mailer when subscriptions are due" do
+       Timecop.freeze((bill.next_month) - 3) do 
+          Subscription.check_and_send_notifications
+       end
+    end 
+  end
 end
