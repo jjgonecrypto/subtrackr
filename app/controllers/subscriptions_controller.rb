@@ -68,7 +68,7 @@ class SubscriptionsController < ApplicationController
         format.html { redirect_to user_subscription_path, notice: 'Subscription was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { redirect_to user_subscription_path }
+        format.html { render :action => "edit" }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
