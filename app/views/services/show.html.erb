@@ -21,5 +21,23 @@
 </p>
 
 
+<% if @service.schemes.present? %>
+	<table id="schemes-list">
+	  <thead><tr><td colspan="3">Schemes</td></tr></thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Amount</th>
+	    <th>Freq</th>
+	  </tr>
+	<% @service.schemes.each do |scheme| %>
+	<tr>
+	   <td><%= scheme.name %></td>
+	   <td><%= show_amount(scheme.amount) %></td>
+	   <td><%= show_frequency(scheme.frequency) %></td>
+	</tr>
+	<% end %>
+	</table>
+<% end %>
+
 <%= link_to 'Edit', edit_service_path(@service) %> |
 <%= link_to 'Back', services_path %>

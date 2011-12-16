@@ -10,7 +10,7 @@ describe Subscription do
     it { should have_field(:frequency).of_type(String).with_default_value_of("monthly") }
     it { should have_fields(:offset, :days_before_notify).of_type(Integer) }
     it { should have_fields(:started, :next_bill, :notify_date).of_type(Date) } 
-    it { should belong_to(:user).of_type(User) }
+    it { should belong_to(:user).of_type(User).as_inverse_of(:subscriptions) }
   end
 
   context "billing and notify dates" do
@@ -35,7 +35,7 @@ describe Subscription do
        
     it "ensures dates are correctly placed in the following month and year" do
        Timecop.freeze(Date.new(2010,12,19)) do 
-	  subject.next_bill.should == Date.new(2011,1,offset) 
+	        subject.next_bill.should == Date.new(2011,1,offset) 
           subject.notify_date.should == Date.new(2011,1,offset) - notify; 
        end
     end
@@ -52,7 +52,7 @@ describe Subscription do
        month = 3 
        day = 5
        Timecop.freeze(Date.new(year,month,day)) do 
-	  subject.next_bill.should == Date.new(year,month,offset) 
+          subject.next_bill.should == Date.new(year,month,offset) 
           subject.notify_date.should == subject.next_bill - notify; 
        end
     end
