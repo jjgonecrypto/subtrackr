@@ -1,4 +1,6 @@
 Subtrackr::Application.routes.draw do
+  devise_for :users
+
   resources :services
 
   match 'users' => 'users#index',               :via => :get
