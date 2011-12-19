@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users 
   # GET /users.json
-  
+  before_filter :authenticate_user!
   before_filter :load_user, :only => [:show, :edit, :update, :destroy]
   
   def load_user
