@@ -14,23 +14,11 @@
     <th></th>
   </tr>
 
-<% @subscriptions.each do |subscription| %>
-  <tr>
-    <td><%= subscription.service %></td>
-    <td><%= number_to_currency(subscription.amount) %></td>
-    <td><%= subscription.currency %></td>
-    <td><%= subscription.frequency %></td>
-    <td><%= subscription.offset %></td>
-    <td><%= subscription.days_before_notify %></td>
-    <td><%= subscription.started %></td>
-    <td><%= link_to 'Show', user_subscription_path(@user, subscription) %></td>
-    <td><%= link_to 'Edit', edit_user_subscription_path(@user, subscription) %></td>
-    <td><%= link_to 'Destroy', user_subscription_path(@user, subscription), confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<%= render @subscriptions %>
+
 </table>
 
 <br />
 
 <%= link_to 'New Subscription', new_user_subscription_path(@user) %> | 
-<%= link_to 'Back', @user %>
+<%= link_to 'Back', :back %>

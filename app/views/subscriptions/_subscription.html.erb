@@ -1,0 +1,12 @@
+<tr>
+    <td><%= subscription.service %></td>
+    <td><%= number_to_currency(subscription.amount) %></td>
+    <td><%= subscription.currency %></td>
+    <td><%= subscription.frequency %></td>
+    <td><%= subscription.offset %></td>
+    <td><%= subscription.days_before_notify %></td>
+    <td><%= subscription.started %></td>
+    <td><%= link_to 'Show', user_subscription_path(@user, subscription) %></td>
+    <td><%= link_to 'Edit', edit_user_subscription_path(@user, subscription) %></td>
+    <td><%= link_to 'Destroy', user_subscription_path(@user, subscription), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>

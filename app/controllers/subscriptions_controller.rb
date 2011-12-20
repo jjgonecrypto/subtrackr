@@ -2,10 +2,6 @@ class SubscriptionsController < ApplicationController
   
   before_filter :load_user, :only => [:index, :new, :show, :edit, :update, :create]
   
-  def load_user
-    @user = User.find(params[:user_id])
-  end
-  
   def index
     @subscriptions = @user.subscriptions
 
@@ -84,5 +80,10 @@ class SubscriptionsController < ApplicationController
       format.html { redirect_to user_subscriptions_url }
       format.json { head :ok }
     end
+  end
+
+  private
+  def load_user
+    @user = User.find(params[:user_id])
   end
 end
