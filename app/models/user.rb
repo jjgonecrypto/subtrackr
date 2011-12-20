@@ -10,15 +10,15 @@ class User
   field :username
   field :password
   field :email
-  field :name
+  #field :name
   
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  validates_presence_of :username
+  validates_uniqueness_of :username, :email, :case_sensitive => false
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
   
   has_many :subscriptions, :dependent => :delete
   
-  attr_protected :password
+  #attr_protected :password
   
   def to_param
     "#{username.parameterize}"
