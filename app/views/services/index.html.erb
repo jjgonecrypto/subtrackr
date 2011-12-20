@@ -2,6 +2,11 @@
 
 <table>
   <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Desc</th>
+    <th>Category</th>
+    <th>Schemes</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,9 +14,14 @@
 
 <% @services.each do |service| %>
   <tr>
+    <td><%= service.name %></td>
+    <td><a href="<%= service.url %>"><%= service.url %></a></td>
+    <td><%= service.desc %></td>
+    <td><%= service.category %></td>
+    <td><%= service.schemes.count %></td>
     <td><%= link_to 'Show', service %></td>
     <td><%= link_to 'Edit', edit_service_path(service) %></td>
-    <td><%= link_to 'Destroy', service, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', service, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
