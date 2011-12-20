@@ -4,10 +4,6 @@ class UsersController < ApplicationController
   
   before_filter :load_user, :only => [:show, :edit, :update, :destroy]
   
-  def load_user
-    @user = User.where(:username => params[:username]).first
-  end
-  
   def index
     @users = User.all
 
@@ -80,5 +76,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :ok }
     end
+  end
+
+  private
+  def load_user
+    @user = User.find(params[:id])
   end
 end
