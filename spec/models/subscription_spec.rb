@@ -23,7 +23,7 @@ describe Subscription do
     end
     
     it "should ensure notify date is correct distance prior" do 
-       (subject.next_bill - subject.notify_date).should == notify_days
+       (subject.next_bill - subject.notify_date).should eq(notify_days)
     end
   end
 
@@ -35,8 +35,8 @@ describe Subscription do
        
     it "ensures dates are correctly placed in the following month and year" do
        Timecop.freeze(Date.new(2010,12,19)) do 
-	        subject.next_bill.should == Date.new(2011,1,offset) 
-          subject.notify_date.should == Date.new(2011,1,offset) - notify; 
+	        subject.next_bill.should eq(Date.new(2011,1,offset)) 
+          subject.notify_date.should eq(Date.new(2011,1,offset) - notify) 
        end
     end
   end
@@ -52,8 +52,8 @@ describe Subscription do
        month = 3 
        day = 5
        Timecop.freeze(Date.new(year,month,day)) do 
-          subject.next_bill.should == Date.new(year,month,offset) 
-          subject.notify_date.should == subject.next_bill - notify; 
+          subject.next_bill.should eq(Date.new(year,month,offset))
+          subject.notify_date.should eq(subject.next_bill - notify) 
        end
     end
   end
@@ -69,8 +69,8 @@ describe Subscription do
        month = 2
        day = 22
        Timecop.freeze(Date.new(year,month,day)) do 
-	  subject.next_bill.should == Date.new(year,month,28) 
-          subject.notify_date.should == subject.next_bill - notify; 
+	        subject.next_bill.should eq(Date.new(year,month,28)) 
+          subject.notify_date.should eq(subject.next_bill - notify) 
        end
     end
   end
