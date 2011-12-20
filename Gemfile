@@ -25,13 +25,14 @@ group :test, :development do
   gem 'timecop'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem "rspec-rails-matchers"
-  gem "mongoid-rspec"
   gem 'factory_girl_rails'
   gem 'mocha'
+  gem 'rspec-rails-mocha', '~> 0.3.1', :require => false
   gem "capybara"
   gem "cucumber"
   gem "cucumber-rails", "1.2.1"
   gem "database_cleaner"
+  gem "jasmine"
 end
 
 gem 'jquery-rails'

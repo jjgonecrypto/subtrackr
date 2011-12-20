@@ -64,7 +64,7 @@ Subtrackr::Application.configure do
     :port                 => 587,
     :domain               => 'baci.lindsaar.net',
     :user_name            => 'subtrackr',
-    :password             => 'subtr4ckr!@#',
+    :password             => 'subtr4ckr!@#$',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
     

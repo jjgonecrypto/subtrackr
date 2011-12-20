@@ -1,0 +1,29 @@
+<h1>Listing schemes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Currency</th>
+    <th>Frequency</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @schemes.each do |scheme| %>
+  <tr>
+    <td><%= scheme.name %></td>
+    <td><%= number_to_currency(scheme.amount) %></td>
+    <td><%= scheme.currency %></td>
+    <td><%= scheme.frequency %></td>
+    <td><%= link_to 'Show', scheme %></td>
+    <td><%= link_to 'Edit', edit_scheme_path(scheme) %></td>
+    <td><%= link_to 'Destroy', scheme, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Scheme', new_scheme_path %>

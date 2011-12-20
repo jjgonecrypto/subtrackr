@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Service:</b>
+  <%= @subscription.service %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @subscription.amount %>
+</p>
+
+<p>
+  <b>Currency:</b>
+  <%= @subscription.currency %>
+</p>
+
+<p>
+  <b>Frequency:</b>
+  <%= @subscription.frequency %>
+</p>
+
+<p>
+  <b>Offset:</b>
+  <%= @subscription.offset %>
+</p>
+
+<p>
+  <b>Days before notify:</b>
+  <%= @subscription.days_before_notify %>
+</p>
+
+<p>
+  <b>Started:</b>
+  <%= @subscription.started %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_subscription_path(@user, @subscription) %> |
+<%= link_to 'Back', :back %>

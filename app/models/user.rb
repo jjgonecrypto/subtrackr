@@ -20,7 +20,5 @@ class User
   
   #attr_protected :password
   
-  def to_param
-    "#{username.parameterize}"
-  end
+  #def to_param "#{username.parameterize}" end
 end
