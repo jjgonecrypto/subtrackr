@@ -1,19 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-<p>
-  <b>Subscriptions:</b>
-  <%= @user.subscriptions.count %> (<%= link_to 'See', user_subscriptions_path(@user) %>)
-</p>
-
-
+<%= render @user %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', :back %>

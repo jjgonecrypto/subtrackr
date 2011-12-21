@@ -18,7 +18,7 @@ class User
   
   has_many :subscriptions, :dependent => :delete
   
-  #attr_protected :password
+  #attr_protected :passworddd
   
   #def to_param "#{username.parameterize}" end
 end

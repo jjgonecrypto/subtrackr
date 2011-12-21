@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users 
   # GET /users.json
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => :dashboard
   before_filter :load_user, :only => [:show, :edit, :update, :destroy]
   
   def index
@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @users }
+    end
+  end
+
+  def dashboard
+    @user = current_user
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @user }
     end
   end
 
