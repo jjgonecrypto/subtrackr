@@ -7,6 +7,7 @@ gem 'rails', '3.1.1'
 
 gem "mongoid", "~> 2.3"
 gem "bson_ext", "~> 1.4"
+gem "devise", ">= 1.5.0"
 
 gem 'json'
 
