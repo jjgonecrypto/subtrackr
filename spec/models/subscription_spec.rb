@@ -78,7 +78,7 @@ describe Subscription do
   context "ensure subscription mailer" do
     let(:bill) { Date.today }
     let!(:user1) { Factory(:user) }
-    let!(:user2) { Factory(:user) }
+    let!(:user2) { Factory(:user, username: user1.username + '1', email: '1' + user1.email) }
     let!(:sub1) { Factory(:subscription, user: user1, service: 'test1', amount: 4.44, offset: bill.day) }
     let!(:sub2) { Factory(:subscription, user: user1, service: 'test2', amount: 5, offset: bill.day) }
     let!(:sub3) { Factory(:subscription, user: user2, service: 'test3', amount: 12, offset: bill.day) }
