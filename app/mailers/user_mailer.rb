@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "justinjmoses@gmail.com"
+  default from: "subtrackr@gmail.com"
    
   def subscription_notifications(user, subscriptions)
      @user = user

@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 .sw[nomp]
 .DS_Store 
+.mvim*

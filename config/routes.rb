@@ -1,6 +1,8 @@
 Subtrackr::Application.routes.draw do
 
-  resources :schemes
+  devise_for :user do
+    root :to => 'users#dashboard'
+  end
 
 =begin
   match 'users' => 'users#index',               :via => :get
@@ -13,15 +15,13 @@ Subtrackr::Application.routes.draw do
 =end
   #resources :subscriptions
   
-  root :to => 'users#index'
+  #root :to => 'users#index'
   
   resources :users do
     resources :subscriptions
   end
   
-  resources :services do
-    resources :schemes
-  end
+  resources :services
     
   # The priority is based upon order of creation:
   # first created -> highest priority.
