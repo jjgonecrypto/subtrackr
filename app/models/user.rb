@@ -10,7 +10,6 @@ class User
   field :username
   field :password
   field :email
-  #field :name
   
   validates_presence_of :username
   validates_uniqueness_of :username, :email, :case_sensitive => false
@@ -18,7 +17,4 @@ class User
   
   has_many :subscriptions, :dependent => :delete
   
-  #attr_protected :passworddd
-  
-  #def to_param "#{username.parameterize}" end
 end
