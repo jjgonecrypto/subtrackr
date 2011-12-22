@@ -52,7 +52,7 @@ Subtrackr::Application.configure do
   # config.threadsafe!
 
   # Disabled for Heroku/Devise support
-  config.assets.initialize_on_precompile = false
+  #config.assets.initialize_on_precompile = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
