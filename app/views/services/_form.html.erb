@@ -27,6 +27,31 @@
     <%= f.label :category %><br />
     <%= f.text_field :category %>
   </div>
+
+  <% if @service.schemes.any? %>
+    <script type="text/javascript">
+      
+      $(document).ready(function() { 
+
+        $('#serviceFormAddScheme').click(function() { 
+
+          //TODO: Replace this with some jquery table....   
+        });
+
+      });
+
+      
+    </script>
+    <table>
+      <% @service.schemes.each do |scheme| %>
+      <!--<td><%= f.label :schemes, :name %>:</td></tr>-->
+      <tr><td>Name: <input /></td><td>Amount: <input /></td><td>Offset: <input /></td><td>Frequency: <input /></td><td>Currency: <input /></td></tr>
+      <% end %>
+    </table>
+
+    <button type="button" id="serviceFormAddScheme">add</button>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
