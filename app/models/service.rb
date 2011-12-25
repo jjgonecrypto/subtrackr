@@ -9,5 +9,5 @@ class Service
   
   embeds_many :schemes
 
-  accepts_nested_attributes_for :schemes
+  accepts_nested_attributes_for :schemes, allow_destroy: true
 end

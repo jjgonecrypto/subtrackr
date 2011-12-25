@@ -13,9 +13,10 @@
   }
 }
 
-#serviceForm table#innerSchemes {
-  width: 100%;
-  td, th {
+#serviceForm ul#innerSchemes {
+  width: 100% ;
+  li {
+    display: inline;
     font-size: smaller;
   }
 }

@@ -1,4 +1,4 @@
-<%= form_for(@service) do |f| %>
+<%= nested_form_for(@service) do |f| %>
   <div id="serviceForm">
   <% if @service.errors.any? %>
     <div id="error_explanation">
@@ -29,22 +29,20 @@
     <%= f.text_field :category %>
   </div>
 
-  <table id="innerSchemes">
-    <% @service.schemes.each do |scheme| %>
-
-      <%= f.fields_for :schemes, scheme do |s|  %>
-        <tr>
-          <td><%= s.label :name %>: <%= s.text_field :name %></td>
-          <td><%= s.label :amount %>: $<%= s.text_field :amount, size: 5 %></td>
-          <td><%= s.label :offset %>: <%= s.text_field :offset, size: 3, maxlength: 2 %></td>
-          <td><%= s.label :frequency %>: <%= s.text_field :frequency %></td>
-          <td><%= s.label :currency %>: <%= s.text_field :currency, size: 3, maxlength: 3 %></td></tr>
-      <% end %>
-
+  <ul id="innerSchemes">
+   
+    <%= f.fields_for :schemes do |s|  %>
+      <li><%= s.label :name %>: <%= s.text_field :name %></li>
+      <li><%= s.label :amount %>: $<%= s.text_field :amount, size: 5 %></li>
+      <li><%= s.label :offset %>: <%= s.text_field :offset, size: 3, maxlength: 2 %></li>
+      <li><%= s.label :frequency %>: <%= s.text_field :frequency %></li>
+      <li><%= s.label :currency %>: <%= s.text_field :currency, size: 3, maxlength: 3 %></li>
+      <li><%= s.link_to_remove "Del" %></li>
     <% end %>
-  </table>
 
-  <button type="button" id="schemesAdd">add</button>
+    <%= f.link_to_add "Add scheme", :schemes %>
+  </ul>
+
 
   <div class="actions">
     <%= f.submit %>
