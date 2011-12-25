@@ -1,0 +1,6 @@
+<li><%= f.label :name %>: <%= f.text_field :name %></li>
+<li><%= f.label :amount %>: $<%= f.text_field :amount, size: 5 %></li>
+<li><%= f.label :offset %>: <%= f.text_field :offset, size: 3, maxlength: 2 %></li>
+<li><%= f.label :frequency %>: <%= f.text_field :frequency %></li>
+<li><%= f.label :currency %>: <%= f.text_field :currency, size: 3, maxlength: 3 %></li>
+<li><%= f.link_to_remove "Del" %></li>

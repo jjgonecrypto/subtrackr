@@ -31,14 +31,7 @@
 
   <ul id="innerSchemes">
    
-    <%= f.fields_for :schemes do |s|  %>
-      <li><%= s.label :name %>: <%= s.text_field :name %></li>
-      <li><%= s.label :amount %>: $<%= s.text_field :amount, size: 5 %></li>
-      <li><%= s.label :offset %>: <%= s.text_field :offset, size: 3, maxlength: 2 %></li>
-      <li><%= s.label :frequency %>: <%= s.text_field :frequency %></li>
-      <li><%= s.label :currency %>: <%= s.text_field :currency, size: 3, maxlength: 3 %></li>
-      <li><%= s.link_to_remove "Del" %></li>
-    <% end %>
+    <%= f.fields_for :schemes %>
 
     <%= f.link_to_add "Add scheme", :schemes %>
   </ul>
