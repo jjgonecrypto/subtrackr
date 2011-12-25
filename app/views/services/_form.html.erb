@@ -1,4 +1,5 @@
 <%= form_for(@service) do |f| %>
+  <div id="serviceForm">
   <% if @service.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@service.errors.count, "error") %> prohibited this service from being saved:</h2>
@@ -28,31 +29,25 @@
     <%= f.text_field :category %>
   </div>
 
-  <% if @service.schemes.any? %>
-    <script type="text/javascript">
-      
-      $(document).ready(function() { 
+  <table id="innerSchemes">
+    <% @service.schemes.each do |scheme| %>
 
-        $('#serviceFormAddScheme').click(function() { 
-
-          //TODO: Replace this with some jquery table....   
-        });
-
-      });
-
-      
-    </script>
-    <table>
-      <% @service.schemes.each do |scheme| %>
-      <!--<td><%= f.label :schemes, :name %>:</td></tr>-->
-      <tr><td>Name: <input /></td><td>Amount: <input /></td><td>Offset: <input /></td><td>Frequency: <input /></td><td>Currency: <input /></td></tr>
+      <%= f.fields_for :schemes, scheme do |s|  %>
+        <tr>
+          <td><%= s.label :name %>: <%= s.text_field :name %></td>
+          <td><%= s.label :amount %>: $<%= s.text_field :amount, size: 5 %></td>
+          <td><%= s.label :offset %>: <%= s.text_field :offset, size: 3, maxlength: 2 %></td>
+          <td><%= s.label :frequency %>: <%= s.text_field :frequency %></td>
+          <td><%= s.label :currency %>: <%= s.text_field :currency, size: 3, maxlength: 3 %></td></tr>
       <% end %>
-    </table>
 
-    <button type="button" id="serviceFormAddScheme">add</button>
-  <% end %>
+    <% end %>
+  </table>
+
+  <button type="button" id="schemesAdd">add</button>
 
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>
