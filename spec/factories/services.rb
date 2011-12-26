@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :service do
-    name ""
-    url ""
-    desc ""
-    category ""
+    name "some name"
+    url "www.examle.com"
+    desc "lorem ipsum intuit ido ipso"
+    category "music"
     schemes [ FactoryGirl.build(:scheme), FactoryGirl.build(:scheme)]
   end
 end

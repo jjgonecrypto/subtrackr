@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :scheme do
-    name ""
+    name "schemy"
     amount 1.23
     offset 0
     frequency "monthly"

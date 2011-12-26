@@ -2,17 +2,8 @@ require 'spec_helper'
 
 describe "subscriptions/edit.html.erb" do
   before(:each) do
-    @user = assign(:user, stub_model(User))
-    @subscription = assign(:subscription, stub_model(Subscription,
-      :service => "",
-      :amount => "",
-      :currency => "",
-      :frequency => "",
-      :offset => "",
-      :days_before_notify => "",
-      :started => "", 
-      :user => @user
-    ))
+    @user = FactoryGirl.create(:user)
+    @subscription = FactoryGirl.create(:subscription, user: @user)
   end
 
   it "renders the edit subscription form" do 
