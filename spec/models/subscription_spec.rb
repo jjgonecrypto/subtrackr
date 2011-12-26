@@ -14,7 +14,7 @@ describe Subscription do
   end
 
   context "billing and notify dates" do
-    subject { Factory(:subscription) } 
+    subject { FactoryGirl.create(:subscription) } 
     let!(:notify_days) {subject.days_before_notify}
 
     it "should ensure billing is set on save" do
@@ -28,7 +28,7 @@ describe Subscription do
   end
 
   context "future monthly date testing" do
-    subject { Factory(:subscription, offset: 15) } 
+    subject { FactoryGirl.create(:subscription, offset: 15) } 
       
     let(:offset) {subject.offset}
     let(:notify) {subject.days_before_notify}
@@ -42,7 +42,7 @@ describe Subscription do
   end
 
   context "future monthly date testing next month" do
-    subject { Factory(:subscription, offset: 26) } 
+    subject { FactoryGirl.create(:subscription, offset: 26) } 
       
     let(:offset) {subject.offset}
     let(:notify) {subject.days_before_notify}
@@ -59,7 +59,7 @@ describe Subscription do
   end
 
   context "future monthly date short months" do
-    subject { Factory(:subscription, offset: 31) } 
+    subject { FactoryGirl.create(:subscription, offset: 31) } 
       
     let(:offset) {subject.offset}
     let(:notify) {subject.days_before_notify}
@@ -77,12 +77,12 @@ describe Subscription do
 
   context "ensure subscription mailer" do
     let(:bill) { Date.today }
-    let!(:user1) { Factory(:user) }
-    let!(:user2) { Factory(:user) }
-    let!(:sub1) { Factory(:subscription, user: user1, service: 'test1', amount: 4.44, offset: bill.day) }
-    let!(:sub2) { Factory(:subscription, user: user1, service: 'test2', amount: 5, offset: bill.day) }
-    let!(:sub3) { Factory(:subscription, user: user2, service: 'test3', amount: 12, offset: bill.day) }
-    let!(:sub4) { Factory(:subscription, user: user2, service: 'test4', amount: 0, offset: (Date.today - 4).day) }
+    let!(:user1) { FactoryGirl.create(:user) }
+    let!(:user2) { FactoryGirl.create(:user) }
+    let!(:sub1) { FactoryGirl.create(:subscription, user: user1, service: 'test1', amount: 4.44, offset: bill.day) }
+    let!(:sub2) { FactoryGirl.create(:subscription, user: user1, service: 'test2', amount: 5, offset: bill.day) }
+    let!(:sub3) { FactoryGirl.create(:subscription, user: user2, service: 'test3', amount: 12, offset: bill.day) }
+    let!(:sub4) { FactoryGirl.create(:subscription, user: user2, service: 'test4', amount: 0, offset: (Date.today - 4).day) }
     let (:mailer) { mock }
 
     before do
