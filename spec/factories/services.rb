@@ -4,6 +4,6 @@ FactoryGirl.define do
     url ""
     desc ""
     category ""
-    schemes [ ]
+    schemes [ FactoryGirl.build(:scheme), FactoryGirl.build(:scheme)]
   end
 end
