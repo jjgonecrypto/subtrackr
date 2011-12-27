@@ -2,7 +2,11 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all
+    if params[:term]
+      @services = Service.where(name: /#{params[:term]}/i)
+    else
+      @services = Service.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

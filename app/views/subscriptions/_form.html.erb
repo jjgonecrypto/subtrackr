@@ -1,3 +1,4 @@
+<div id="subscriptionForm">
 <%= form_for [@user, @subscription] do |f| %>
   <% if @subscription.errors.any? %>
     <div id="error_explanation">
@@ -43,3 +44,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>
