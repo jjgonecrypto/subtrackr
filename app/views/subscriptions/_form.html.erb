@@ -12,9 +12,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :service %><br />
-    <%= f.text_field :service %>
+  <ul class="field" id="inlineServiceSchemes">
+    <li>
+      <%= f.label :service %><br />
+      <%= f.text_field :service %>
+    </li>
+    <li id="inlineSchemeChooser">
+    </li>
   </div>
   <div class="field">
     <%= f.label :amount %><br />

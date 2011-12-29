@@ -22,8 +22,8 @@ Service.create(name: 'Spotify', url: 'http://spotify.com', desc: 'Streaming musi
 Service.create(name: 'Netflix', url: 'http://netflix.com', desc: 'Streaming tv and film service from the US', category: 'Film & TV',
 	schemes:
 	[
-		{name: "Streaming", amount: 7.99, frequency: "monthly"},
-		{name: "Streaming + DVD", amount: 15.98, frequency: "monthly"}
+		{name: "Streaming", amount: 7.99, frequency: "monthly", offset: 31},
+		{name: "Streaming + DVD", amount: 15.98, frequency: "monthly", offset: 31}
 	]
 )
 Service.create(name: 'Github', url: 'http://github.com', desc: 'Git code hosting and collaboration', category: 'Developer',

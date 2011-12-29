@@ -1,3 +1,9 @@
 // Place all the styles related to the Subscriptions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#inlineServiceSchemes {
+  margin: 0 0 1em 0; padding: 0;
+  li { display: inline; font-size: smaller;}
+  #inlineSchemeChooser { display: none; }
+  .ui-effects-wrapper { display:inline; }
+}
