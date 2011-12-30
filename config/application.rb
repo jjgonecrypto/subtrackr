@@ -48,5 +48,11 @@ module Subtrackr
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Generator info to use rspec but not for views. And to use factory girl.
+    config.generators do |g|
+      g.test_framework :rspec, views: false, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
   end
 end
