@@ -16,12 +16,9 @@ $(document).ready ->
     $('#inlineSchemeChooser').html(selectors).show('slide')
     $('.schemeButton').click( () ->
       s = ui.item.schemes[$(this).attr('index')] 
-      $('#subscription_amount').val(s.amount)
-      $('#subscription_frequency').val(s.frequency)
-      $('#subscription_offset').val(if s.offset == 0 then new Date().getDate() else s.offset)
+      $('#subscription_amount').val(s.amount).effect('highlight',750)
+      $('#subscription_frequency').val(s.frequency).effect('highlight',750)
+      $('#subscription_offset').val(if s.offset == 0 then new Date().getDate() else s.offset).effect('highlight',750)
     )
     false
   })
-  
-  
-    
