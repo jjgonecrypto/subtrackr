@@ -27,9 +27,10 @@ describe ServicesController do
     {}
   end
 
+  let (:service) { FactoryGirl.create(:service) }
+
   describe "GET index" do
     it "assigns all services as @services" do
-      service = Service.create! valid_attributes
       get :index
       assigns(:services).should eq([service])
     end
@@ -37,7 +38,6 @@ describe ServicesController do
 
   describe "GET show" do
     it "assigns the requested service as @service" do
-      service = Service.create! valid_attributes
       get :show, :id => service.id
       assigns(:service).should eq(service)
     end
@@ -52,7 +52,6 @@ describe ServicesController do
 
   describe "GET edit" do
     it "assigns the requested service as @service" do
-      service = Service.create! valid_attributes
       get :edit, :id => service.id
       assigns(:service).should eq(service)
     end
@@ -98,7 +97,6 @@ describe ServicesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested service" do
-        service = Service.create! valid_attributes
         # Assuming there are no other services in the database, this
         # specifies that the Service created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -108,13 +106,11 @@ describe ServicesController do
       end
 
       it "assigns the requested service as @service" do
-        service = Service.create! valid_attributes
         put :update, :id => service.id, :service => valid_attributes
         assigns(:service).should eq(service)
       end
 
       it "redirects to the service" do
-        service = Service.create! valid_attributes
         put :update, :id => service.id, :service => valid_attributes
         response.should redirect_to(service)
       end
@@ -122,7 +118,6 @@ describe ServicesController do
 
     describe "with invalid params" do
       it "assigns the service as @service" do
-        service = Service.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Service.any_instance.stubs(:save).returns(false)
         put :update, :id => service.id, :service => {}
@@ -130,7 +125,6 @@ describe ServicesController do
       end
 
       it "re-renders the 'edit' template" do
-        service = Service.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Service.any_instance.stubs(:save).returns(false)
         put :update, :id => service.id, :service => {}
@@ -140,15 +134,15 @@ describe ServicesController do
   end
 
   describe "DELETE destroy" do
+    let! (:service) { FactoryGirl.create(:service) }
+  
     it "destroys the requested service" do
-      service = Service.create! valid_attributes
       expect {
         delete :destroy, :id => service.id
       }.to change(Service, :count).by(-1)
     end
 
     it "redirects to the services list" do
-      service = Service.create! valid_attributes
       delete :destroy, :id => service.id
       response.should redirect_to(services_url)
     end
