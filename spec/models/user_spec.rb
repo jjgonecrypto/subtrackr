@@ -5,8 +5,12 @@ describe User do
     it { should be_kind_of(Mongoid::Document) }
     it { should be_timestamped_document }
 
-    #it { should have_field(:phone_number) }
-    #it { should have_field(:password_hash) }
-    #it { should have_field(:salt) }
+    it { should have_field(:username) }
+    it { should validate_presence_of(:username) }
+
+    it { should have_field(:email) }
+    it { should validate_uniqueness_of(:email) }
+    
+    it { should have_field(:password) }
   end
 end

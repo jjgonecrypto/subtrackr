@@ -20,10 +20,10 @@ require 'spec_helper'
 
 describe SubscriptionsController do
   
-  let (:user) { Factory(:user) }
+  let (:user) { FactoryGirl.create(:user) }
   
   describe "GET index" do
-    let!(:subscription) { Factory(:subscription, user: user) }
+    let!(:subscription) { FactoryGirl.create(:subscription, user: user) }
     
     it "assigns all subscriptions as @subscriptions" do
       get :index, :user_id => user.id
@@ -32,7 +32,7 @@ describe SubscriptionsController do
   end
 
   describe "GET show" do
-    let!(:subscription) { Factory(:subscription, user: user) }
+    let!(:subscription) { FactoryGirl.create(:subscription, user: user) }
 
     it "assigns the requested subscription as @subscription" do
       get :show, :id => subscription.id, :user_id => user.id
@@ -48,7 +48,7 @@ describe SubscriptionsController do
   end
 
   describe "GET edit" do
-    let!(:subscription) { Factory(:subscription, user: user) }
+    let!(:subscription) { FactoryGirl.create(:subscription, user: user) }
     
     it "assigns the requested subscription as @subscription" do
       get :edit, :id => subscription.id, :user_id => user.id
@@ -58,7 +58,7 @@ describe SubscriptionsController do
 
   describe "POST create" do
     describe "with valid params" do
-      let!(:subscription) { Factory.attributes_for(:subscription, user: user) }
+      let!(:subscription) { FactoryGirl.attributes_for(:subscription, user: user) }
       
       it "creates a new Subscription" do
         expect {
@@ -97,7 +97,7 @@ describe SubscriptionsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      let!(:subscription) { Factory(:subscription, user: user) }
+      let!(:subscription) { FactoryGirl.create(:subscription, user: user) }
       
       it "updates the requested subscription" do
         # Assuming there are no other subscriptions in the database, this
@@ -120,7 +120,7 @@ describe SubscriptionsController do
     end
 
     describe "with invalid params" do
-      let!(:subscription) { Factory(:subscription, user: user) }
+      let!(:subscription) { FactoryGirl.create(:subscription, user: user) }
       
       it "assigns the subscription as @subscription" do
         # Trigger the behavior that occurs when invalid params are submitted
@@ -139,7 +139,7 @@ describe SubscriptionsController do
   end
 
   describe "DELETE destroy" do
-    let!(:subscription) { Factory(:subscription, user: user) }
+    let!(:subscription) { FactoryGirl.create(:subscription, user: user) }
     
     it "destroys the requested subscription" do
       expect {

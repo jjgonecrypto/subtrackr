@@ -1,4 +1,6 @@
-Factory.define :subscription do |sub|
-  sub.offset  15
-  sub.days_before_notify 3
+FactoryGirl.define do
+  factory :subscription do
+    offset  15
+    days_before_notify 3
+  end
 end

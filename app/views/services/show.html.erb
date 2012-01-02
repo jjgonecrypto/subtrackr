@@ -1,3 +1,5 @@
+<div id="serviceShow">
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -22,7 +24,7 @@
 
 
 <% if @service.schemes.any? %>
-	<table id="schemes-list">
+	<table id="schemesList">
 	  <thead><tr><td colspan="3">Schemes</td></tr></thead>
 	  <tr>
 	    <th>Name</th>
@@ -40,4 +42,6 @@
 <% end %>
 
 <%= link_to 'Edit', edit_service_path(@service) %> |
+<%= link_to 'Services', :services %>
 <%= link_to 'Back', :back %>
+</div>

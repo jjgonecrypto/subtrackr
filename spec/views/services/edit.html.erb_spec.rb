@@ -2,22 +2,22 @@ require 'spec_helper'
 
 describe "services/edit.html.erb" do
   before(:each) do
-    @service = assign(:service, stub_model(Service,
-      :name => "",
-      :url => "",
-      :desc => "",
-      :category => ""
-    ))
+    @service = FactoryGirl.create(:service)
   end
 
   it "renders the edit service form" do
     render
 
-    assert_select "form", :action => services_path(@service), :method => "post" do
-      assert_select "input#service_name", :name => "service[name]"
-      assert_select "input#service_url", :name => "service[url]"
-      assert_select "input#service_desc", :name => "service[desc]"
-      assert_select "input#service_category", :name => "service[category]"
+    assert_select "form", action: services_path(@service), method: "post" do
+      ["name", "url", "desc", "category"].each do |field|
+        assert_select "input#service_#{field}", name: "service[#{field}]", value: @service.send(field)
+      end
+
+      (0..1).each do |i| #for each schemes within the service
+        ["name", "amount", "offset", "frequency", "currency"].each do |field|
+          assert_select "input#service_schemes_attributes_#{i}_#{field}", name:"service[schemes_attributes][#{i}][#{field}]", value: @service.schemes[i].send(field)
+        end
+      end
     end
   end
 end
