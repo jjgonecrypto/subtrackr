@@ -1,10 +1,10 @@
-Given /^I have services named (.+)$/ do |names|
+Given /^there are services named (.+)$/ do |names|
   names.split(', ').each do |name|
     Service.create!(name: name)
   end
 end
 
-Given /^I have no services$/ do
+Given /^there are no services$/ do
   Service.delete_all
 end
 
@@ -40,7 +40,7 @@ When /^I submit the form$/ do
   find(:xpath, "//input[@type='submit']").click
 end
 
-Given /^I have a service named "([^\"]*)"$/ do |arg1|
+Given /^there is a service named "([^\"]*)"$/ do |arg1|
   Service.create!(name: arg1)
 end
 

@@ -2,11 +2,11 @@ Feature: Services
   In order to manage services
   As a user
   I want to see all services 
-  and to edit services 
+  and to edit services with their embeddeed schemes
 
   @javascript
   Scenario: Edit a Service with Schemes
-    Given I have a service named "Spotify"
+    Given there is a service named "Spotify"
     And with a scheme named "premium" of amount "5.34"
     And with a scheme named "ultra" of amount "23.34"
     When I go to edit the service
@@ -16,7 +16,7 @@ Feature: Services
     And I should not see "premium"
 
   Scenario: Services List
-    Given I have services named Spotify, Netflix
+    Given there are services named Spotify, Netflix
     When I go to the list of services
     Then I should see "Spotify"
     And I should see "Netflix"
