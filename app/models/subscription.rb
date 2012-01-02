@@ -4,15 +4,15 @@ class Subscription
   
   FREQUENCY_UNITS = [ "daily", "weekly", "monthly", "yearly" ]
   
-  field :service,         	:type => String
-  field :amount,          	:type => Float
-  field :currency,        	:type => String,  :default => "usd"
-  field :frequency,  	  	:type => String,  :default => "monthly"
-  field :offset,	  	:type => Integer, :default => 1
-  field :days_before_notify,	:type => Integer, :default => 2
-  field :started,	  	:type => Date,    :default => Date.today
-  field :next_bill,		:type => Date
-  field :notify_date,		:type => Date
+  field :service,           type: String
+  field :amount,            type: Float
+  field :currency,          type: String,  default: "usd"
+  field :frequency,         type: String,  default: "monthly"
+  field :offset,            type: Integer, default: 1
+  field :days_before_notify,type: Integer, default: 2
+  field :started,           type: Date,    default: Date.today
+  field :next_bill,         type: Date
+  field :notify_date,       type: Date
 
   belongs_to :user, :inverse_of => :subscriptions
   
@@ -42,7 +42,7 @@ class Subscription
   end 
 
   def calc_monthly  
-    today = Date.today	  
+    today = Date.today    
     if (Date::valid_date?(today.year, today.month, self.offset))
         bill_this_month = Date.new(today.year, today.month, self.offset)
     else
@@ -53,7 +53,7 @@ class Subscription
 
 =begin
   def calc_weekly
-    #JM: this is buggy because SUN = 0. If the offset is 0 it breaks the algorithm	  
+    #JM: this is buggy because SUN = 0. If the offset is 0 it breaks the algorithm    
     today = Date.today
 
     ((today + self.days_before_notify).wday >= self.offset || (today.self.days_before_notify).wday == 0)) 

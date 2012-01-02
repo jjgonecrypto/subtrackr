@@ -14,7 +14,7 @@ Feature: Subscriptions from Schemes
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "weekly"
-    And I should see "Offset" populated with today's day of the week
+    And I should see "Offset" populated with todays day of the week
   
   @javascript
   Scenario: Create a Subscription from an existing Scheme with no monthly offset
@@ -27,7 +27,7 @@ Feature: Subscriptions from Schemes
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "monthly"
-    And I should see "Offset" populated with today's day of month
+    And I should see "Offset" populated with todays day of month
 
   @javascript
   Scenario: Create a Subscription from an existing Scheme with no yearly offset
@@ -40,7 +40,7 @@ Feature: Subscriptions from Schemes
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "yearly"
-    And I should see "Offset" populated with today's day of year
+    And I should see "Offset" populated with todays day of year
 
   @javascript
   Scenario: Create a Subscription from an existing Scheme with a fixed offset

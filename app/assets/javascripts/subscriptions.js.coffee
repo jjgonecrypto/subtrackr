@@ -25,7 +25,8 @@ $(document).ready ->
           when "weekly"
             if new Date().getDay() is 0 then 7 
             else new Date().getDay() 
-          when "yearly" then new Date().getDayOfYear()
+          when "yearly" 
+            Math.ceil((new Date().getTime() - new Date(new Date().getFullYear(), 0, 1).getTime()) / (999 * 3600 * 24))
           else new Date().getDate()
         
       $('#subscription_offset').val(offset).effect('highlight',750)
