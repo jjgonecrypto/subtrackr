@@ -18,7 +18,17 @@ $(document).ready ->
       s = ui.item.schemes[$(this).attr('index')] 
       $('#subscription_amount').val(s.amount).effect('highlight',750)
       $('#subscription_frequency').val(s.frequency).effect('highlight',750)
-      $('#subscription_offset').val(if s.offset == 0 then new Date().getDate() else s.offset).effect('highlight',750)
+
+      offset = s.offset
+      if offset is 0
+        offset = switch s.frequency
+          when "weekly"
+            if new Date().getDay() is 0 then 7 
+            else new Date().getDay() 
+          when "yearly" then new Date().getDayOfYear()
+          else new Date().getDate()
+        
+      $('#subscription_offset').val(offset).effect('highlight',750)
     )
     false
   })
