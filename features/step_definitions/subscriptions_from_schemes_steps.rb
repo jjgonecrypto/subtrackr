@@ -7,7 +7,7 @@ When /^I select "([^\"]*)" from the dropdown$/ do |arg1|
 end
 
 When /^I click the "([^\"]*)" scheme$/ do |arg1|
-  find("#inlineSchemeChooser button").click
+  find("#inline-scheme-chooser button").click
 end
 
 Then /^I should see "([^\"]*)" populated with "([^\"]*)"$/ do |arg1, arg2|

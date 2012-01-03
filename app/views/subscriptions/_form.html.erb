@@ -1,4 +1,4 @@
-<div id="subscriptionForm">
+<div id="subscription-form">
 <%= form_for [@user, @subscription] do |f| %>
   <% if @subscription.errors.any? %>
     <div id="error_explanation">
@@ -12,12 +12,12 @@
     </div>
   <% end %>
 
-  <ul class="field" id="inlineServiceSchemes">
+  <ul class="field" id="inline-service-schemes">
     <li>
       <%= f.label :service %><br />
       <%= f.text_field :service %>
     </li>
-    <li id="inlineSchemeChooser" style="display: inline"></li>
+    <li id="inline-scheme-chooser" style="display: inline"></li>
   </ul>
   <div class="field">
     <%= f.label :amount %><br />

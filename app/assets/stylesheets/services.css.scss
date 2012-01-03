@@ -1,7 +1,7 @@
 // Place all the styles related to the Services controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#serviceShow table#schemesList {
+#service-show table#schemes-list {
   thead {
     background-color: #000; 
     color: #fff; 
@@ -13,7 +13,7 @@
   }
 }
 
-#serviceForm ul#innerSchemes {
+#service-form ul#inner-schemes {
   width: 100% ;
   li {
     display: inline;

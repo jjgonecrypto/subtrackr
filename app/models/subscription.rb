@@ -4,15 +4,15 @@ class Subscription
   
   FREQUENCY_UNITS = [ "daily", "weekly", "monthly", "yearly" ]
   
-  field :service,           type: String
-  field :amount,            type: Float
-  field :currency,          type: String,  default: "usd"
-  field :frequency,         type: String,  default: "monthly"
-  field :offset,            type: Integer, default: 1
-  field :days_before_notify,type: Integer, default: 2
-  field :started,           type: Date,    default: Date.today
-  field :next_bill,         type: Date
-  field :notify_date,       type: Date
+  field :service,             type: String
+  field :amount,              type: Float
+  field :currency,            type: String,  default: "usd"
+  field :frequency,           type: String,  default: "monthly"
+  field :offset,              type: Integer, default: 1
+  field :days_before_notify,  type: Integer, default: 2
+  field :started,             type: Date,    default: Date.today
+  field :next_bill,           type: Date
+  field :notify_date,         type: Date
 
   belongs_to :user, :inverse_of => :subscriptions
   

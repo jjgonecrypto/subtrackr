@@ -1,5 +1,5 @@
 <%= nested_form_for(@service) do |f| %>
-  <div id="serviceForm">
+  <div id="service-form">
   <% if @service.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@service.errors.count, "error") %> prohibited this service from being saved:</h2>
@@ -29,7 +29,7 @@
     <%= f.text_field :category %>
   </div>
 
-  <ul id="innerSchemes">
+  <ul id="inner-schemes">
    
     <%= f.fields_for :schemes %>
 

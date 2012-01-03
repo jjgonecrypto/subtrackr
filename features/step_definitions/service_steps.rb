@@ -30,7 +30,7 @@ end
 
 When /^I add a scheme with the name "([^\"]*)" and an amount of "([^\"]*)" with frequency "([^\"]*)" and offset "([^\"]*)"$/ do |arg1, arg2, arg3, arg4|
   click_link("Add scheme")  
-  within("#innerSchemes") do
+  within("#inner-schemes") do
     fill_in("Name", with: arg1)
     fill_in("Amount", with: arg2)
     fill_in("Frequency", with: arg3)
@@ -56,7 +56,7 @@ When /^I go to edit the service$/ do
 end
 
 When /^I delete the scheme named "([^\"]*)"$/ do |arg1|
-  within("#innerSchemes") do 
+  within("#inner-schemes") do 
     click_link("Del")
   end
 end
