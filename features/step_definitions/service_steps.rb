@@ -17,13 +17,14 @@ When /^I enter in "([^\"]*)" as a name$/ do |arg1|
   fill_in("Name", with: arg1)
 end
 
-When /^I add a scheme with the name "([^\"]*)" and an amount of "([^\"]*)" with frequency "([^\"]*)" and offset "([^\"]*)"$/ do |arg1, arg2, arg3, arg4|
-  click_link("Add scheme")  
-  within("#inner-schemes") do
-    fill_in("Name", with: arg1)
-    fill_in("Amount", with: arg2)
-    fill_in("Frequency", with: arg3)
-    fill_in("Offset", with: arg4)
+When /^I add schemes with the following:$/ do |table|
+  table.hashes.each do |hash|
+    click_link("Add scheme")  
+    within("#inner-schemes") do
+      hash.each do |field|
+        fill_in(field.first.capitalize, with: field.last)
+      end
+    end
   end  
 end
 
@@ -31,13 +32,15 @@ When /^I submit the form$/ do
   find(:xpath, "//input[@type='submit']").click
 end
 
-Given /^there is a service named "([^\"]*)"$/ do |arg1|
-  Service.create!(name: arg1)
+Given /^there is a service named "([^\"]*)"$/ do |name| 
+  Service.create(name: name)
 end
 
-Given /^with a scheme named "([^"]*)" of amount "([^"]*)" with frequency "([^\"]*)" and offset "([^\"]*)"$/ do |arg1, arg2, arg3, arg4|
-  service = Service.first
-  service.schemes.create!(name: arg1, amount: arg2, frequency: arg3, offset: arg4)
+Given /^there is a service named "([^\"]*)" with the following schemes:$/ do |name, table|
+  service = Service.create(name: name)
+  table.hashes.each do |hash|
+    service.schemes.create(hash)
+  end
 end
 
 

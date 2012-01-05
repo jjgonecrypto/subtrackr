@@ -6,8 +6,9 @@ Feature: Subscriptions from Schemes
   @javascript
   Scenario: Create a Subscription from an existing Scheme with no weekly offset
     Given I am a user with the username of "test"
-    And there is a service named "Netflix"
-    And with a scheme named "premium" of amount "5.34" with frequency "weekly" and offset "0"
+    And there is a service named "Netflix" with the following schemes:
+    | name    | amount    | frequency   | offset  |
+    | premium | 5.34      | weekly      | 0       |
     When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
@@ -19,8 +20,9 @@ Feature: Subscriptions from Schemes
   @javascript
   Scenario: Create a Subscription from an existing Scheme with no monthly offset
     Given I am a user with the username of "test"
-    And there is a service named "Netflix"
-    And with a scheme named "premium" of amount "5.34" with frequency "monthly" and offset "0"
+    And there is a service named "Netflix" with the following schemes:
+    | name    | amount    | frequency   | offset  |
+    | premium | 5.34      | monthly     | 0       |
     When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
@@ -32,8 +34,9 @@ Feature: Subscriptions from Schemes
   @javascript
   Scenario: Create a Subscription from an existing Scheme with no yearly offset
     Given I am a user with the username of "test"
-    And there is a service named "Netflix"
-    And with a scheme named "premium" of amount "5.34" with frequency "yearly" and offset "0"
+    And there is a service named "Netflix" with the following schemes:
+    | name    | amount    | frequency   | offset  |
+    | premium | 5.34      | yearly      | 0       |
     When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
@@ -45,8 +48,9 @@ Feature: Subscriptions from Schemes
   @javascript
   Scenario: Create a Subscription from an existing Scheme with a fixed offset
     Given I am a user with the username of "test"
-    And there is a service named "Netflix"
-    And with a scheme named "premium" of amount "5.34" with frequency "monthly" and offset "12"
+    And there is a service named "Netflix" with the following schemes:
+    | name    | amount    | frequency   | offset  |
+    | premium | 5.34      | monthly     | 12      |
     When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown

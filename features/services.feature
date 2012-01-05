@@ -6,9 +6,10 @@ Feature: Services
 
   @javascript
   Scenario: Edit a Service with Schemes
-    Given there is a service named "Spotify"
-    And with a scheme named "premium" of amount "5.34" with frequency "monthly" and offset "12"
-    And with a scheme named "ultra" of amount "23.34" with frequency "monthly" and offset "0"
+    Given there is a service named "Spotify" with the following schemes:
+    | name    | amount    | frequency   | offset  |
+    | premium | 3.23      | monthly     | 12      |
+    | ultra   | 4.55      | monthly     | 0       |
     When I go to edit the service named "Spotify"
     And I delete the scheme named "premium"
     And I submit the form
@@ -25,7 +26,9 @@ Feature: Services
   Scenario: Create a Service with Schemes
     When I go to a new service
     And I enter in "Spotify" as a name
-    And I add a scheme with the name "premium" and an amount of "5.50" with frequency "monthly" and offset "12"
+    And I add schemes with the following:
+    | name    | amount    | frequency   | offset  |
+    | premium | 5.50      | monthly     | 12      |
     And I submit the form
     Then I should see "Spotify"
     And I should see "premium" 
