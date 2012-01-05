@@ -25,7 +25,7 @@ Feature: Services
   @javascript
   Scenario: Create a Service with Schemes
     When I go to a new service
-    And I enter in "Spotify" as a name
+    And I enter in "Spotify" as the name
     And I add schemes with the following:
     | name    | amount    | frequency   | offset  |
     | premium | 5.50      | monthly     | 12      |

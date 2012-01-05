@@ -9,14 +9,6 @@ Given /^there are no services$/ do
 end
 
 
-Then /^I should see "([^\"]*)"$/ do |arg1|
-  page.should have_content(arg1)
-end
-
-When /^I enter in "([^\"]*)" as a name$/ do |arg1|
-  fill_in("Name", with: arg1)
-end
-
 When /^I add schemes with the following:$/ do |table|
   table.hashes.each do |hash|
     click_link("Add scheme")  
@@ -33,22 +25,18 @@ When /^I submit the form$/ do
 end
 
 Given /^there is a service named "([^\"]*)"$/ do |name| 
-  FactoryGirl.create(:service, name: name, schemes: [])
+  FactoryGirl.create(:service, name: name)
 end
 
 Given /^there is a service named "([^\"]*)" with the following schemes:$/ do |name, table|
-  service = FactoryGirl.create(:service, name: name, schemes: [])
+  service = FactoryGirl.create(:service, name: name)
   table.hashes.each do |hash|
     service.schemes.create(hash)
   end
 end
 
-When /^I delete the scheme named "([^\"]*)"$/ do |arg1|
-  within("#inner-schemes") do 
+When /^I delete the scheme named "([^\"]*)"$/ do |scheme_name|
+  within(:xpath, "//*[parent::*[@id='inner-schemes']][descendant::input[@value='#{scheme_name}']]") do 
     click_link("Del")
   end
-end
-
-Then /^I should not see "([^\"]*)"$/ do |arg1|
-  page.should_not have_content(arg1)
 end

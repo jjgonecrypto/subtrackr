@@ -10,8 +10,8 @@ Feature: Subscriptions from Schemes
     | name    | amount    | frequency   | offset  |
     | premium | 5.34      | weekly      | 0       |
     When I go to a new subscription for user "test"
-    And I enter "net" as the service
-    And I select "Netflix" from the dropdown
+    And I enter in "net" as the service
+    And I select "Netflix" from the autocomplete dropdown
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "weekly"
@@ -24,8 +24,8 @@ Feature: Subscriptions from Schemes
     | name    | amount    | frequency   | offset  |
     | premium | 5.34      | monthly     | 0       |
     When I go to a new subscription for user "test"
-    And I enter "net" as the service
-    And I select "Netflix" from the dropdown
+    And I enter in "net" as the service
+    And I select "Netflix" from the autocomplete dropdown
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "monthly"
@@ -38,8 +38,8 @@ Feature: Subscriptions from Schemes
     | name    | amount    | frequency   | offset  |
     | premium | 5.34      | yearly      | 0       |
     When I go to a new subscription for user "test"
-    And I enter "net" as the service
-    And I select "Netflix" from the dropdown
+    And I enter in "net" as the service
+    And I select "Netflix" from the autocomplete dropdown
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "yearly"
@@ -52,8 +52,8 @@ Feature: Subscriptions from Schemes
     | name    | amount    | frequency   | offset  |
     | premium | 5.34      | monthly     | 12      |
     When I go to a new subscription for user "test"
-    And I enter "net" as the service
-    And I select "Netflix" from the dropdown
+    And I enter in "net" as the service
+    And I select "Netflix" from the autocomplete dropdown
     And I click the "premium" scheme
     Then I should see "Amount" populated with "5.34"
     And I should see "Frequency" populated with "monthly"
