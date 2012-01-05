@@ -1,6 +1,6 @@
 Given /^there are services named (.+)$/ do |names|
   names.split(', ').each do |name|
-    Service.create!(name: name)
+    FactoryGirl.create(:service, name: name)
   end
 end
 
@@ -33,16 +33,15 @@ When /^I submit the form$/ do
 end
 
 Given /^there is a service named "([^\"]*)"$/ do |name| 
-  Service.create(name: name)
+  FactoryGirl.create(:service, name: name, schemes: [])
 end
 
 Given /^there is a service named "([^\"]*)" with the following schemes:$/ do |name, table|
-  service = Service.create(name: name)
+  service = FactoryGirl.create(:service, name: name, schemes: [])
   table.hashes.each do |hash|
     service.schemes.create(hash)
   end
 end
-
 
 When /^I delete the scheme named "([^\"]*)"$/ do |arg1|
   within("#inner-schemes") do 
@@ -53,4 +52,3 @@ end
 Then /^I should not see "([^\"]*)"$/ do |arg1|
   page.should_not have_content(arg1)
 end
-

@@ -4,6 +4,6 @@ FactoryGirl.define do
     url "www.examle.com"
     desc "lorem ipsum intuit ido ipso"
     category "music"
-    schemes [ FactoryGirl.build(:scheme), FactoryGirl.build(:scheme)]
+    schemes [ ]
   end
 end
