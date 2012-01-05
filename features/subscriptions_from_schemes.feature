@@ -8,7 +8,7 @@ Feature: Subscriptions from Schemes
     Given I am a user with the username of "test"
     And there is a service named "Netflix"
     And with a scheme named "premium" of amount "5.34" with frequency "weekly" and offset "0"
-    When I go to a new subscription
+    When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
     And I click the "premium" scheme
@@ -21,7 +21,7 @@ Feature: Subscriptions from Schemes
     Given I am a user with the username of "test"
     And there is a service named "Netflix"
     And with a scheme named "premium" of amount "5.34" with frequency "monthly" and offset "0"
-    When I go to a new subscription
+    When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
     And I click the "premium" scheme
@@ -34,7 +34,7 @@ Feature: Subscriptions from Schemes
     Given I am a user with the username of "test"
     And there is a service named "Netflix"
     And with a scheme named "premium" of amount "5.34" with frequency "yearly" and offset "0"
-    When I go to a new subscription
+    When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
     And I click the "premium" scheme
@@ -47,7 +47,7 @@ Feature: Subscriptions from Schemes
     Given I am a user with the username of "test"
     And there is a service named "Netflix"
     And with a scheme named "premium" of amount "5.34" with frequency "monthly" and offset "12"
-    When I go to a new subscription
+    When I go to a new subscription for user "test"
     And I enter "net" as the service
     And I select "Netflix" from the dropdown
     And I click the "premium" scheme

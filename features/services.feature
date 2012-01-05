@@ -9,7 +9,7 @@ Feature: Services
     Given there is a service named "Spotify"
     And with a scheme named "premium" of amount "5.34" with frequency "monthly" and offset "12"
     And with a scheme named "ultra" of amount "23.34" with frequency "monthly" and offset "0"
-    When I go to edit the service
+    When I go to edit the service named "Spotify"
     And I delete the scheme named "premium"
     And I submit the form
     Then I should see "ultra" 

@@ -8,20 +8,9 @@ Given /^there are no services$/ do
   Service.delete_all
 end
 
-When /^I go to the list of services$/ do
-  visit services_path
-end
 
 Then /^I should see "([^\"]*)"$/ do |arg1|
   page.should have_content(arg1)
-end
-
-Then /^I should have ([0-9]+) services?$/ do |count|
-  Service.count.should eq(count.to_i)
-end
-
-When /^I go to a new service$/ do
-  visit new_service_path
 end
 
 When /^I enter in "([^\"]*)" as a name$/ do |arg1|
@@ -51,9 +40,6 @@ Given /^with a scheme named "([^"]*)" of amount "([^"]*)" with frequency "([^\"]
   service.schemes.create!(name: arg1, amount: arg2, frequency: arg3, offset: arg4)
 end
 
-When /^I go to edit the service$/ do
-  visit edit_service_path(Service.first)
-end
 
 When /^I delete the scheme named "([^\"]*)"$/ do |arg1|
   within("#inner-schemes") do 
