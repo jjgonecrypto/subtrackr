@@ -1,7 +1,7 @@
 development:
   host: localhost
   database: subtrackr
-
+  
 test:
   host: localhost
   database: subtrackr_test

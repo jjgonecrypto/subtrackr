@@ -10,10 +10,12 @@ describe Service do
 
   context "saving" do 
     subject { FactoryGirl.build(:service) }
+    let!(:scheme1) { FactoryGirl.build(:scheme, service: subject) }
+    let!(:scheme2) { FactoryGirl.build(:scheme, service: subject) }
     it "should save embedded schemes" do
-      subject.schemes.size.should eq(2)
-      subject.schemes[0].service.should eq(subject)
-      subject.schemes[1].service.should eq(subject)
+      subject.schemes.length.should eq(2)
+      subject.schemes[0].should eq(scheme1)
+      subject.schemes[1].should eq(scheme2)
       subject.save.should eq(true)
     end
   end

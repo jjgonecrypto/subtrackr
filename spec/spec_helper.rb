@@ -6,6 +6,7 @@ require 'rspec/rails/mocha'
 require 'rspec/autorun'
 require 'database_cleaner'
 require 'mocha'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
