@@ -12,10 +12,10 @@ $(document).ready ->
   ,
   select: (event, ui) ->
     selectors = "<strong>Schemes:</strong>"  
-    selectors += "<button index='#{ i }' class='scheme-button' id='scheme#{ i }-activate' type='button'>#{ if scheme.amount > 0 then scheme.amount else ''} #{ scheme.name }</button> " for scheme, i in ui.item.schemes
+    selectors += "<button data-index='#{ i }' class='scheme-button' id='scheme#{ i }-activate' type='button'>#{ if scheme.amount > 0 then scheme.amount else ''} #{ scheme.name }</button> " for scheme, i in ui.item.schemes
     $('#inline-scheme-chooser').html(selectors).show('slide')
     $('.scheme-button').click( () ->
-      s = ui.item.schemes[$(this).attr('index')] 
+      s = ui.item.schemes[$(this).data('index')] 
       $('#subscription_amount').val(s.amount).effect('highlight',750)
       $('#subscription_frequency').val(s.frequency).effect('highlight',750)
 
