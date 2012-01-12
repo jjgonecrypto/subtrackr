@@ -1,7 +1,8 @@
 class Service
   include Mongoid::Document
   include Mongoid::Timestamps
-   
+  include Mongoid::Paperclip
+    
   field :name,      type: String
   field :url,       type: String
   field :desc,      type: String

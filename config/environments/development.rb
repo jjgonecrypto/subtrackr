@@ -37,5 +37,6 @@ Subtrackr::Application.configure do
     :password             => 'subtr4ckr!@#$',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
-    
+  
+  Paperclip.options[:command_path] = "/usr/local/bin/"  
 end
