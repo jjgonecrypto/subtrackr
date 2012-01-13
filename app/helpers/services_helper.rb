@@ -7,4 +7,10 @@ module ServicesHelper
 	def show_frequency(frequency)
 		return frequency.first.capitalize
 	end	
+
+	def service_image(service, type, options = {})
+		if (service.logo?)
+			image_tag service.logo.url(type), options
+		end
+	end
 end

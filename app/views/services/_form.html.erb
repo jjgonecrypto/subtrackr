@@ -29,8 +29,14 @@
     <%= f.text_field :category %>
   </div>
 
+  <div class="field">
+    <div id="logo">
+      <%= service_image @service, :teeny %>
+    </div>
+    <%= f.file_field :logo %>
+  </div>
+
   <ul id="inner-schemes">
-   
     <%= f.fields_for :schemes %>
 
     <%= f.link_to_add "Add scheme", :schemes %>
