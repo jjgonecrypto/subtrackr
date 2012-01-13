@@ -38,5 +38,9 @@ Subtrackr::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
   
-  Paperclip.options[:command_path] = "/usr/local/bin/"  
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  PAPERCLIP_OPTIONS = { 
+    storage:        :filesystem, 
+    url:            '/system/images/:klass/:attachment/:name/:style.:extension' }
 end

@@ -1,4 +1,7 @@
-AWS::S3::Base.establish_connection!(
-  access_key_id: 		ENV['S3_KEY'],
-  secret_access_key: 	ENV['S3_SECRET']
-)
+Paperclip.interpolates :name  do |attachment, style|
+  attachment.instance.name.downcase.gsub(/[^a-z0-9]?/, '')
+end
+
+Paperclip.interpolates :klass  do |attachment, style|
+  attachment.instance.class.to_s.downcase.gsub(/[^A-Za-z0-9]?/, '')
+end 
