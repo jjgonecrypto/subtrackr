@@ -34,3 +34,10 @@ Feature: Services
     And I should see "premium" 
     And I should see "$5.50"
     And I should see "M"  
+
+    Scenario: Service Logo
+      When I go to a new service
+      And I enter in "Spotify" as the name
+      And I attach an image "test.png" as a service logo  
+      And I submit the form
+      Then I should see an image "small.png" under "Spotify" service

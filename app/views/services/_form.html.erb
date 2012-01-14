@@ -27,13 +27,14 @@
   <div class="field">
     <%= f.label :category %><br />
     <%= f.text_field :category %>
-  </div>
+  </div>  
 
   <div class="field">
     <div id="logo">
+      <%= f.label :logo %>
       <%= service_image @service, :teeny %>
+      <%= f.file_field :logo %>
     </div>
-    <%= f.file_field :logo %>
   </div>
 
   <ul id="inner-schemes">

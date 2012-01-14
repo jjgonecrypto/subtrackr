@@ -48,9 +48,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-end
+  Spec::Runner.configure do |config|
+    config.include Paperclip::Shoulda::Matchers
+  end
 
-Spec::Runner.configure do |config|
-  config.include Paperclip::Shoulda::Matchers
 end
-
