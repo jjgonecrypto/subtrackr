@@ -7,6 +7,8 @@ require 'rspec/autorun'
 require 'database_cleaner'
 require 'mocha'
 require 'capybara/rspec'
+require 'paperclip/matchers'
+require 'mongoid_paperclip_rspec_helper'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -46,5 +48,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+end
+
+Spec::Runner.configure do |config|
+  config.include Paperclip::Shoulda::Matchers
 end
 
