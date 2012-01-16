@@ -9,7 +9,7 @@ module ServicesHelper
 	end	
 
 	def service_image(service, type, options = {})
-		if (service.logo?)
+		if service.logo.present?
 			image_tag service.logo.url(type), options
 		end
 	end
