@@ -40,3 +40,11 @@ When /^I delete the scheme named "([^\"]*)"$/ do |scheme_name|
     click_link("Del")
   end
 end
+
+When /^I attach an image "([^\"]*)" as a service logo$/ do |image|
+  attach_file("Logo", Rails.root.join('features/artifacts/test.png').to_s)    
+end
+
+Then /^I should see an image "([^\"]*)" under "([^\"]*)" service$/ do |image, service|
+  find(:xpath, "//img[starts-with(@src,'/system/images/service/logos/#{service.downcase}/#{image}')]")
+end

@@ -36,4 +36,11 @@ Subtrackr::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  
+  PAPERCLIP_OPTIONS = { 
+    storage:        :filesystem, 
+    url:            '/system/images/:klass/:attachment/:name/:style.:extension' }
+      
 end
