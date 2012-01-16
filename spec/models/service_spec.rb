@@ -5,7 +5,8 @@ describe Service do
     it { should be_kind_of(Mongoid::Document) }
     it { should be_timestamped_document }
     it { should have_fields(:name, :url, :desc, :category).of_type(String) }
-    it { should embed_many(:schemes)}  
+    it { should embed_many(:schemes) }  
+    it { should have_attached_file(:logo) }
   end
 
   context "saving" do 

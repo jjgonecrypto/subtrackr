@@ -71,4 +71,16 @@ Subtrackr::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
     
+  S3_CREDENTIALS = {
+    access_key_id: ENV['S3_KEY'], 
+    secret_access_key:  ENV['S3_SECRET'] }
+    
+  PAPERCLIP_OPTIONS = { 
+    storage:        :s3, 
+    s3_credentials: S3_CREDENTIALS,
+    bucket:         'subtrackr',
+    path:           ':klass/:attachment/:name/:style.:extension' }
+    
+  AWS::S3::Base.establish_connection!(S3_CREDENTIALS)
+  
 end

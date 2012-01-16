@@ -35,6 +35,9 @@ group :test, :development do
   gem "jasmine"
 end
 
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem "aws-s3",            :require => "aws/s3"
+
 gem 'jquery-rails'
 gem "nested_form", git: "git://github.com/ryanb/nested_form.git"
 

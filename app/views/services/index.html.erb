@@ -1,7 +1,9 @@
+
 <h1>Listing services</h1>
 
-<table>
+<table id="services-list">
   <tr>
+    <th></th>
     <th>Name</th>
     <th>Url</th>
     <th>Desc</th>
@@ -14,6 +16,7 @@
 
 <% @services.each do |service| %>
   <tr>
+    <td class="logo"><%= service_image service, :teeny =%></td>
     <td><%= service.name %></td>
     <td><a href="<%= service.url %>"><%= service.url %></a></td>
     <td><%= service.desc %></td>

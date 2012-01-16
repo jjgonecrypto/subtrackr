@@ -1,22 +1,39 @@
 // Place all the styles related to the Services controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#service-show table#schemes-list {
-  thead {
-    background-color: #000; 
-    color: #fff; 
-    font-weight: bold;
-    text-align: center;
+#service-show {
+  .logo {
+    float: right;
   }
-  td, th {
-    font-size: smaller;
+  table#schemes-list {
+    thead {
+      background-color: #000; 
+      color: #fff; 
+      font-weight: bold;
+      text-align: center;
+    }
+    td, th {
+      font-size: smaller;
+    }
   }
 }
 
-#service-form ul#inner-schemes {
-  width: 100% ;
-  li {
-    display: inline;
-    font-size: smaller;
+#service-form {
+
+  #logo { 
   }
+  ul#inner-schemes {
+    width: 100% ;
+    li {
+      display: inline;
+      font-size: smaller;
+    }
+  }
+}
+
+#services-list {
+  .logo {
+    text-align: right;
+  }
+  th { text-align: left;}
 }
