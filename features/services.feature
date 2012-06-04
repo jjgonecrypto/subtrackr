@@ -10,7 +10,7 @@ Feature: Services
     | name    | amount    | frequency   | offset  |
     | premium | 3.23      | monthly     | 12      |
     | ultra   | 4.55      | monthly     | 0       |
-    When I go to edit the service named "Spotify"
+    When I ast go to edit the service named "Spotify"
     And I delete the scheme named "premium"
     And I submit the form
     Then I should see "ultra" 

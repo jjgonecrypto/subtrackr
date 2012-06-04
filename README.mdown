@@ -1,0 +1,3 @@
+#subtrackr
+
+a tool to manage your service subscriptions, with email reminders and new service discovery.
