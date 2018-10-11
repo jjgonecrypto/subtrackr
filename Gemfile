@@ -28,7 +28,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'mocha'
   gem 'rspec-rails-mocha', '~> 0.3.1', :require => false
-  gem "capybara"
+  gem "capybara", ">= 1.1.2"
   gem "cucumber"
   gem "cucumber-rails", "1.2.1"
   gem "database_cleaner"
